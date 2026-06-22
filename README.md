@@ -23,8 +23,3 @@ By Week 12, write C code, compile with riscv32-gcc, upload via UART, and run on 
 - [ ] Week 7-8: C toolchain + blink.c
 - [ ] Week 9-10: Timer, Interrupts, SPI OLED
 - [ ] Week 11-12: Integration + Dhrystone
-
-## Week 1: LED Blink (In Progress)
-- [ ] led_blink.vhd written
-- [ ] ModelSim simulation passed
-- [ ] Hardware test: LED0 blinking at 1Hz
