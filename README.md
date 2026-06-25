@@ -17,8 +17,8 @@ By Week 12, write C code, compile with riscv32-gcc, upload via UART, and run on 
 
 ## Progress
 - ✅ Week 1: LED blink 1Hz
-- 🔄 Week 2: GPIO module
-- [ ] Week 3-4: UART TX/RX
+- ✅ Week 2: GPIO module
+- 🔄 Week 3-4: UART TX/RX
 - [ ] Week 5-6: PicoRV32 + UART bootloader
 - [ ] Week 7-8: C toolchain + blink.c
 - [ ] Week 9-10: Timer, Interrupts, SPI OLED
