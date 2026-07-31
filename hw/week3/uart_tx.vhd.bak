@@ -1,0 +1,130 @@
+-- uart_tx.vhd
+-- Week 3: UART Transmitter, 115200 baud, 8N1
+-- Sends a character when trigger signal is pulsed
+
+library ieee;
+use ieee.std_logic_1164.all;
+use ieee.numeric_std.all;
+
+entity uart_tx is
+    generic (
+        CLOCK_FREQ_HZ : positive := 50_000_000;
+        BAUD_RATE     : positive := 115200
+    );
+    port (
+        clk      : in  std_logic;
+        reset_n  : in  std_logic;
+        -- Data input
+        tx_data  : in  std_logic_vector(7 downto 0);  -- Byte to send
+        tx_start : in  std_logic;                      -- Pulse high to start
+        -- UART output
+        tx       : out std_logic;                      -- Serial output
+        -- Status
+        tx_busy  : out std_logic                       -- '1' during transmission
+    );
+end entity uart_tx;
+
+architecture rtl of uart_tx is
+
+    -- Baud rate counter: 50,000,000 / 115200 ≈ 434.028
+    -- We'll use 434. Actual baud rate = 50,000,000 / 434 = 115207 (0.006% error)
+    constant BAUD_DIVIDER : positive := CLOCK_FREQ_HZ / BAUD_RATE;
+    -- = 434 for 115200 at 50MHz
+
+    -- Counter for baud ticks
+    signal baud_cnt : unsigned(9 downto 0) := (others => '0');  -- 0 to 433 fits in 10 bits
+    signal baud_tick : std_logic := '0';
+
+    -- State machine
+    type tx_state_type is (IDLE, START_BIT, DATA_BITS, STOP_BIT);
+    signal state : tx_state_type := IDLE;
+
+    -- Bit counter (0 to 7 for data bits)
+    signal bit_cnt : unsigned(2 downto 0) := (others => '0');
+
+    -- Shift register for output data
+    signal tx_shift : std_logic_vector(9 downto 0) := (others => '1');
+    -- Layout: [START, D0, D1, D2, D3, D4, D5, D6, D7, STOP]
+    -- START = '0', STOP = '1', idle line = '1'
+
+begin
+
+    -- =============================================
+    -- BAUD RATE GENERATOR
+    -- Generates a tick every 434 clock cycles
+    -- =============================================
+    p_baud : process(clk, reset_n)
+    begin
+        if reset_n = '0' then
+            baud_cnt <= (others => '0');
+            baud_tick <= '0';
+        elsif rising_edge(clk) then
+            if state = IDLE then
+                -- Reset counter when idle (re-sync on each transmission)
+                baud_cnt <= (others => '0');
+                baud_tick <= '0';
+            elsif baud_cnt = to_unsigned(BAUD_DIVIDER - 1, baud_cnt'length) then
+                baud_cnt <= (others => '0');
+                baud_tick <= '1';
+            else
+                baud_cnt <= baud_cnt + 1;
+                baud_tick <= '0';
+            end if;
+        end if;
+    end process p_baud;
+
+    -- =============================================
+    -- UART TRANSMIT STATE MACHINE
+    -- =============================================
+    p_tx_fsm : process(clk, reset_n)
+    begin
+        if reset_n = '0' then
+            state    <= IDLE;
+            bit_cnt  <= (others => '0');
+            tx_shift <= (others => '1');
+            tx       <= '1';  -- Idle line is high
+            tx_busy  <= '0';
+        elsif rising_edge(clk) then
+            -- Default: baud_tick is only '1' for one cycle per baud period
+            if baud_tick = '1' then
+                case state is
+
+                    when IDLE =>
+                        tx <= '1';  -- Idle
+                        if tx_start = '1' then
+                            -- Load shift register: [START(0), DATA(7:0), STOP(1)]
+                            tx_shift <= '0' & tx_data & '1';
+                            state    <= START_BIT;
+                            bit_cnt  <= (others => '0');
+                            tx_busy  <= '1';
+                        else
+                            tx_busy <= '0';
+                        end if;
+
+                    when START_BIT =>
+                        -- Send START bit (LSB of shift register)
+                        tx      <= tx_shift(0);
+                        tx_shift <= '1' & tx_shift(9 downto 1);  -- Shift right
+                        state   <= DATA_BITS;
+                        bit_cnt <= (others => '0');
+
+                    when DATA_BITS =>
+                        tx      <= tx_shift(0);
+                        tx_shift <= '1' & tx_shift(9 downto 1);
+                        if bit_cnt = to_unsigned(7, bit_cnt'length) then
+                            state <= STOP_BIT;
+                        else
+                            bit_cnt <= bit_cnt + 1;
+                        end if;
+
+                    when STOP_BIT =>
+                        tx      <= tx_shift(0);  -- STOP bit ('1')
+                        state   <= IDLE;
+                        tx_busy <= '0';
+
+                end case;
+            end if;
+        end if;
+    end process p_tx_fsm;
+
+end architecture rtl;
