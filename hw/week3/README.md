@@ -38,7 +38,7 @@ Three-state FSM: `INTER_MSG_DELAY → SEND_CHAR → WAIT_UART_READY`
 
 ## Result
 ![cht1](cht1.png)
-![cht2](cht2.jpg)
+![cht2](cht2.png)
 
 ## Simulation
 ![sim1](sim1.png)
