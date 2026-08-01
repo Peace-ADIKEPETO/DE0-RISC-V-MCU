@@ -18,8 +18,13 @@ By Week 12, write C code, compile with riscv32-gcc, upload via UART, and run on 
 ## Progress
 - ✅ Week 1: LED blink 1Hz
 - ✅ Week 2: GPIO module
-- 🔄 Week 3-4: UART TX/RX
-- [ ] Week 5-6: PicoRV32 + UART bootloader
+- ✅ Week 3-4: UART TX/RX
+- 🔄 Week 5-6: PicoRV32 + UART bootloader
 - [ ] Week 7-8: C toolchain + blink.c
 - [ ] Week 9-10: Timer, Interrupts, SPI OLED
 - [ ] Week 11-12: Integration + Dhrystone
+
+## Weekly Summaries
+- [Week 1](hw/week1_led_blink/README.md) - LED blink at 1Hz, clock divider, Quartus flow
+- [Week 2](hw/week2_gpio/README.md) - GPIO module, debounce, synchronizers
+- [Week 3-4](hw/week3/README.md) - Full-duplex UART TX/RX 115200
