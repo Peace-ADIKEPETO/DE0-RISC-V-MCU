@@ -8,7 +8,7 @@ end entity;
 
 architecture sim of uart_tx_tb is
 
-    component uart_tx is
+    component uart is
         generic (
             CLOCK_FREQ_HZ : positive := 50_000_000;
             BAUD_RATE     : positive := 115200
@@ -19,7 +19,11 @@ architecture sim of uart_tx_tb is
             tx_data  : in  std_logic_vector(7 downto 0);
             tx_start : in  std_logic;
             tx       : out std_logic;
-            tx_busy  : out std_logic
+            tx_busy  : out std_logic;
+				rx       : in  std_logic;
+            rx_data  : out std_logic_vector(7 downto 0);
+            rx_done  : out std_logic  
+				
         );
     end component;
 
@@ -32,11 +36,16 @@ architecture sim of uart_tx_tb is
 
     constant CLK_PERIOD : time := 20 ns;   -- 50 MHz clock
     constant BIT_PERIOD : time := 8.68 us; -- 1 bit period at 115200 baud
+	 
+	 --- Unused 
+	 signal rx : std_logic;
+	 signal rx_done : std_logic;
+	 signal rx_data : std_logic_vector(7 downto 0);
 
 begin
 
     -- Unit Under Test (UUT)
-    uut: uart_tx
+    uut: uart
         generic map (
             CLOCK_FREQ_HZ => 50_000_000,
             BAUD_RATE     => 115200
@@ -47,7 +56,10 @@ begin
             tx_data  => tx_data,
             tx_start => tx_start,
             tx       => tx,
-            tx_busy  => tx_busy
+            tx_busy  => tx_busy,
+				rx       => rx,
+				rx_data  => rx_data,
+				rx_done  => rx_done
         );
 
     -- Clock Generator Process

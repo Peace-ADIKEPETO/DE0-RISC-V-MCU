@@ -2,7 +2,7 @@ library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
 
-entity uart_tx is
+entity uart is
     generic (
         CLOCK_FREQ_HZ : positive := 50_000_000;
         BAUD_RATE     : positive := 115200
@@ -15,9 +15,9 @@ entity uart_tx is
         tx       : out std_logic;
         tx_busy  : out std_logic
     );
-end entity uart_tx;
+end entity uart;
 
-architecture behavioral of uart_tx is
+architecture behavioral of uart is
     -- Fixed divider calculation: 50_000_000 / 115200 = 434 clock cycles
     constant BIT_PERIOD : integer := CLOCK_FREQ_HZ / BAUD_RATE;
 

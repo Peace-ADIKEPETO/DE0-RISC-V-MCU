@@ -14,19 +14,23 @@ end entity hello_uart_top;
 architecture rtl of hello_uart_top is
 
     -- Component declaration for the simplified UART transmitter
-    component uart_tx is
-        generic (
-            CLOCK_FREQ_HZ : positive := 50_000_000;
-            BAUD_RATE     : positive := 115200
-        );
-        port (
-            clk      : in  std_logic;
-            reset_n  : in  std_logic;
-            tx_data  : in  std_logic_vector(7 downto 0);
-            tx_start : in  std_logic;
-            tx       : out std_logic;
-            tx_busy  : out std_logic
-        );
+    component uart is
+       generic (
+        CLOCK_FREQ_HZ : positive := 50_000_000;
+        BAUD_RATE     : positive := 115200
+    );
+    port (
+        clk      : in  std_logic;
+        reset_n  : in  std_logic;   
+        tx_data  : in  std_logic_vector(7 downto 0);
+        tx_start : in  std_logic;
+        tx       : out std_logic;
+        tx_busy  : out std_logic;
+		
+		  rx       : in  std_logic;
+        rx_data  : out std_logic_vector(7 downto 0);
+        rx_done  : out std_logic  
+    );
     end component;
 
     -- Message ROM: "Hello World!\r\n" (Exactly 14 bytes)
@@ -63,11 +67,15 @@ architecture rtl of hello_uart_top is
     -- State machine simplified to 3 states (no GAP state required due to synchronous design)
     type ctrl_state_type is (INTER_MSG_DELAY, SEND_CHAR, WAIT_UART_READY);
     signal ctrl_state : ctrl_state_type := INTER_MSG_DELAY;
+	 
+	 signal rx : std_logic;
+	 signal rx_done : std_logic;
+	 signal rx_data : std_logic_vector(7 downto 0);
 
 begin
 
     -- Instantiation of the ultra-simplified UART module
-    u_uart : uart_tx
+    u_uart : uart
         generic map (
             CLOCK_FREQ_HZ => 50_000_000,
             BAUD_RATE     => 115200
@@ -78,7 +86,10 @@ begin
             tx_data  => tx_data,
             tx_start => tx_start,
             tx       => tx,
-            tx_busy  => tx_busy
+            tx_busy  => tx_busy,
+				rx       => rx,
+				rx_data  => rx_data,
+				rx_done  => rx_done
         );
 
     -- =============================================
