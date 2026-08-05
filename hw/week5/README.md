@@ -3,6 +3,22 @@
 ## Goal
 Instantiate the PicoRV32 RISC-V CPU core, connect it to 16KB of Block RAM (M9K), and implement memory-mapped GPIO. Prove the CPU executes instructions from RAM by running a hardcoded blink program.
 
+## Architecture
+┌──────────────────────────────────────────┐
+│ FPGA │
+│ ┌──────────┐ ┌──────────────┐ │
+│ │ PicoRV32 │────►│ 16KB RAM │ │
+│ │ CPU Core │ │ (4× M9K) │ │
+│ │ │◄────│ │ │
+│ └──────────┘ └──────────────┘ │
+│ │ │
+│ │ Memory-mapped bus │
+│ ▼ │
+│ ┌──────────┐ │
+│ │ GPIO │──► LEDs (active high) │
+│ │ 0x40000000 │
+│ └──────────┘ │
+└──────────────────────────────────────────┘
 
 ## Memory Map
 | Address Range | Peripheral |
