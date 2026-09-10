@@ -61,14 +61,14 @@ UTF-8 without BOM, Windows CRLF line endings.
 ```bash
 python upload.py COM4 program.hex
 
-##Wiring
+## Wiring
 |DE0-Nano	|Arduino    |
 |---------------|-----------|
 |PIN_D3 (FPGA TX)|	Pin 8|
 |PIN_C3 (FPGA RX)|	Pin 9|
 |GND	|GND    |
 
-##Key Learnings
+## Key Learnings
 Intel HEX parsing in VHDL is nontrivial but doable
 
 Byte ordering matters — always verify against known reference
