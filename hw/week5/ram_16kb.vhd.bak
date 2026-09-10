@@ -1,0 +1,93 @@
+-- ram_16kb.vhd
+-- 16KB Block RAM (4096 x 32-bit) with initial program
+-- Program: Simple LED blink via memory-mapped GPIO
+
+library ieee;
+use ieee.std_logic_1164.all;
+use ieee.numeric_std.all;
+
+entity ram_16kb is
+    port (
+        clk   : in  std_logic;
+        addr  : in  std_logic_vector(11 downto 0);
+        wdata : in  std_logic_vector(31 downto 0);
+        wstrb : in  std_logic_vector(3 downto 0);
+        rdata : out std_logic_vector(31 downto 0);
+        we    : in  std_logic
+    );
+end entity ram_16kb;
+
+architecture rtl of ram_16kb is
+
+    -- 4096 words of 32 bits
+    type ram_type is array (0 to 4095) of std_logic_vector(31 downto 0);
+
+    -- Initialize RAM with a simple RISC-V program
+    -- This program toggles LED[0] in an infinite loop
+    --
+    -- Assembly:
+    --   li x1, 0x40000000   # GPIO output address
+    --   li x2, 0x01         # LED[0] value
+    --   li x3, 0x00         # All LEDs off
+    -- loop:
+    --   sw x2, 0(x1)        # Turn LED on
+    --   sw x3, 0(x1)        # Turn LED off
+    --   j loop              # Repeat forever
+
+    function init_ram return ram_type is
+        variable ram : ram_type := (others => (others => '0'));
+    begin
+        -- Address 0: lui x1, 0x40000  (load upper immediate: x1 = 0x40000000)
+        ram(0) := x"400000B7";  -- lui x1, 0x40000
+
+        -- Address 4: addi x2, x0, 1  (x2 = 1)
+        ram(1) := x"00100113";  -- addi x2, x0, 1
+
+        -- Address 8: addi x3, x0, 0  (x3 = 0)
+        ram(2) := x"00000193";  -- addi x3, x0, 0
+
+        -- Address 12: sw x2, 0(x1)  (store x2 to address in x1)
+        ram(3) := x"0020A023";  -- sw x2, 0(x1)
+
+        -- Address 16: sw x3, 0(x1)  (store x3 to address in x1)
+        ram(4) := x"0030A023";  -- sw x3, 0(x1)
+
+        -- Address 20: jal x0, -16  (jump back 16 bytes = 4 instructions)
+        ram(5) := x"FF1FF06F";  -- jal x0, -16
+
+        return ram;
+    end function;
+
+    signal ram_block : ram_type := init_ram;
+
+    -- Quartus Block RAM inference attributes
+    attribute ramstyle : string;
+    attribute ramstyle of ram_block : signal is "M9K, no_rw_check";
+
+begin
+
+    process(clk)
+    begin
+        if rising_edge(clk) then
+            -- Read (always)
+            rdata <= ram_block(to_integer(unsigned(addr)));
+
+            -- Write (byte-enable)
+            if we = '1' then
+                if wstrb(0) = '1' then
+                    ram_block(to_integer(unsigned(addr)))(7 downto 0) <= wdata(7 downto 0);
+                end if;
+                if wstrb(1) = '1' then
+                    ram_block(to_integer(unsigned(addr)))(15 downto 8) <= wdata(15 downto 8);
+                end if;
+                if wstrb(2) = '1' then
+                    ram_block(to_integer(unsigned(addr)))(23 downto 16) <= wdata(23 downto 16);
+                end if;
+                if wstrb(3) = '1' then
+                    ram_block(to_integer(unsigned(addr)))(31 downto 24) <= wdata(31 downto 24);
+                end if;
+            end if;
+        end if;
+    end process;
+
+end architecture rtl;

@@ -1,0 +1,40 @@
+
+State Machine - |soc_boot_top|picorv32:u_cpu|mem_wordsize
+Name mem_wordsize.00 mem_wordsize.10 mem_wordsize.01 
+mem_wordsize.00 0 0 0 
+mem_wordsize.01 1 0 1 
+mem_wordsize.10 1 1 0 
+
+State Machine - |soc_boot_top|picorv32:u_cpu|cpu_state
+Name cpu_state.cpu_state_trap cpu_state.cpu_state_fetch cpu_state.cpu_state_ld_rs1 cpu_state.cpu_state_ld_rs2 cpu_state.cpu_state_exec cpu_state.cpu_state_shift cpu_state.cpu_state_stmem cpu_state.cpu_state_ldmem 
+cpu_state.cpu_state_trap 0 0 0 0 0 0 0 0 
+cpu_state.cpu_state_stmem 1 0 0 0 0 0 1 0 
+cpu_state.cpu_state_shift 1 0 0 0 0 1 0 0 
+cpu_state.cpu_state_exec 1 0 0 0 1 0 0 0 
+cpu_state.cpu_state_ld_rs2 1 0 0 1 0 0 0 0 
+cpu_state.cpu_state_ld_rs1 1 0 1 0 0 0 0 0 
+cpu_state.cpu_state_fetch 1 1 0 0 0 0 0 0 
+cpu_state.cpu_state_ldmem 1 0 0 0 0 0 0 1 
+
+State Machine - |soc_boot_top|bootloader:u_boot|hex_state
+Name hex_state.FLUSH_LINE hex_state.SEND_ACK hex_state.PROCESS_RECORD hex_state.READ_DATA hex_state.READ_TYPE_L hex_state.READ_TYPE_H hex_state.READ_ADDR0 hex_state.READ_ADDR1 hex_state.READ_ADDR2 hex_state.READ_ADDR3 hex_state.READ_LENGTH_L hex_state.READ_LENGTH_H hex_state.WAIT_COLON 
+hex_state.WAIT_COLON 0 0 0 0 0 0 0 0 0 0 0 0 0 
+hex_state.READ_LENGTH_H 0 0 0 0 0 0 0 0 0 0 0 1 1 
+hex_state.READ_LENGTH_L 0 0 0 0 0 0 0 0 0 0 1 0 1 
+hex_state.READ_ADDR3 0 0 0 0 0 0 0 0 0 1 0 0 1 
+hex_state.READ_ADDR2 0 0 0 0 0 0 0 0 1 0 0 0 1 
+hex_state.READ_ADDR1 0 0 0 0 0 0 0 1 0 0 0 0 1 
+hex_state.READ_ADDR0 0 0 0 0 0 0 1 0 0 0 0 0 1 
+hex_state.READ_TYPE_H 0 0 0 0 0 1 0 0 0 0 0 0 1 
+hex_state.READ_TYPE_L 0 0 0 0 1 0 0 0 0 0 0 0 1 
+hex_state.READ_DATA 0 0 0 1 0 0 0 0 0 0 0 0 1 
+hex_state.PROCESS_RECORD 0 0 1 0 0 0 0 0 0 0 0 0 1 
+hex_state.SEND_ACK 0 1 0 0 0 0 0 0 0 0 0 0 1 
+hex_state.FLUSH_LINE 1 0 0 0 0 0 0 0 0 0 0 0 1 
+
+State Machine - |soc_boot_top|uart:u_uart|rx_state
+Name rx_state.STOP_BIT rx_state.R_DATA rx_state.WAIT_HALF rx_state.IDLE 
+rx_state.IDLE 0 0 0 0 
+rx_state.WAIT_HALF 0 0 1 1 
+rx_state.R_DATA 0 1 0 1 
+rx_state.STOP_BIT 1 0 0 1 

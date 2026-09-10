@@ -1,0 +1,139 @@
+-- hello_uart_top.vhd
+-- Week 3 Top-Level: Sends "Hello World!\r\n" repeatedly via UART
+
+library ieee;
+use ieee.std_logic_1164.all;
+use ieee.numeric_std.all;
+
+entity hello_uart_top is
+    port (
+        clk     : in  std_logic;  -- 50MHz
+        reset_n : in  std_logic;  -- BTN0, active low
+        uart_tx : out std_logic   -- UART TX output
+    );
+end entity hello_uart_top;
+
+architecture rtl of hello_uart_top is
+
+    -- UART TX component
+    component uart_tx is
+        generic (
+            CLOCK_FREQ_HZ : positive := 50_000_000;
+            BAUD_RATE     : positive := 115200
+        );
+        port (
+            clk      : in  std_logic;
+            reset_n  : in  std_logic;
+            tx_data  : in  std_logic_vector(7 downto 0);
+            tx_start : in  std_logic;
+            tx       : out std_logic;
+            tx_busy  : out std_logic
+        );
+    end component;
+
+    -- Message ROM: "Hello World!\r\n" + null terminator (15 bytes)
+    constant MSG_LENGTH : positive := 15;
+    type msg_array is array (0 to MSG_LENGTH - 1) of std_logic_vector(7 downto 0);
+    constant MESSAGE : msg_array := (
+        x"48",  -- H
+        x"65",  -- e
+        x"6C",  -- l
+        x"6C",  -- l
+        x"6F",  -- o
+        x"20",  -- (space)
+        x"57",  -- W
+        x"6F",  -- o
+        x"72",  -- r
+        x"6C",  -- l
+        x"64",  -- d
+        x"21",  -- !
+        x"0D",  -- \r (carriage return)
+        x"0A",  -- \n (newline)
+        x"00"   -- null terminator (triggers delay then restart)
+    );
+
+    signal tx_data     : std_logic_vector(7 downto 0);
+    signal tx_start    : std_logic := '0';
+    signal tx_busy     : std_logic;
+
+    -- Slow counter for delay between messages (~1 second)
+    constant DELAY_MAX : unsigned(25 downto 0) := to_unsigned(49_999_999, 26);
+    signal delay_cnt   : unsigned(25 downto 0) := (others => '0');
+    signal msg_idx     : integer range 0 to MSG_LENGTH - 1 := 0;
+    signal send_active : std_logic := '0';
+
+    type ctrl_state_type is (IDLE, SEND_CHAR, WAIT_BUSY, GAP, INTER_MSG_DELAY);
+    signal ctrl_state : ctrl_state_type := INTER_MSG_DELAY;
+
+begin
+
+    -- UART TX instantiation
+    u_uart : uart_tx
+        generic map (
+            CLOCK_FREQ_HZ => 50_000_000,
+            BAUD_RATE     => 115200
+        )
+        port map (
+            clk      => clk,
+            reset_n  => reset_n,
+            tx_data  => tx_data,
+            tx_start => tx_start,
+            tx       => uart_tx,
+            tx_busy  => tx_busy
+        );
+
+    -- =============================================
+    -- MESSAGE SENDER STATE MACHINE
+    -- =============================================
+    p_sender : process(clk, reset_n)
+    begin
+        if reset_n = '0' then
+            ctrl_state <= INTER_MSG_DELAY;
+            msg_idx    <= 0;
+            tx_data    <= (others => '0');
+            tx_start   <= '0';
+            delay_cnt  <= (others => '0');
+        elsif rising_edge(clk) then
+            -- Default: tx_start is pulsed, so clear it
+            tx_start <= '0';
+
+            case ctrl_state is
+
+                when INTER_MSG_DELAY =>
+                    -- Wait ~1 second between messages
+                    if delay_cnt = DELAY_MAX then
+                        delay_cnt  <= (others => '0');
+                        msg_idx    <= 0;
+                        ctrl_state <= SEND_CHAR;
+                    else
+                        delay_cnt <= delay_cnt + 1;
+                    end if;
+
+                when SEND_CHAR =>
+                    -- Check for null terminator (end of message)
+                    if MESSAGE(msg_idx) = x"00" then
+                        ctrl_state <= INTER_MSG_DELAY;
+                    else
+                        tx_data    <= MESSAGE(msg_idx);
+                        tx_start   <= '1';
+                        ctrl_state <= WAIT_BUSY;
+                    end if;
+
+                when WAIT_BUSY =>
+                    -- Wait for UART to start transmitting
+                    if tx_busy = '1' then
+                        ctrl_state <= GAP;
+                    end if;
+
+                when GAP =>
+                    -- Wait for transmission to complete
+                    if tx_busy = '0' then
+                        msg_idx    <= msg_idx + 1;
+                        ctrl_state <= SEND_CHAR;
+                    end if;
+
+            end case;
+        end if;
+    end process p_sender;
+
+end architecture rtl;

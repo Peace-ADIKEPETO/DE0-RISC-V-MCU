@@ -1,0 +1,421 @@
+m255
+K4
+z2
+!s11e MIXED_VERSIONS
+!s11f vlog 2020.1 2020.02, Feb 28 2020
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+Z0 dC:/Users/Peace/Documents/Docs/DE0-RISC-V-MCU-main/hw/week6/simulation/modelsim
+Ebootloader
+Z1 w1789053701
+Z2 DPx4 ieee 11 numeric_std 0 22 aU^R8eGcicLcUFIaBQSL>3
+Z3 DPx3 std 6 textio 0 22 zE1`LPoLg^DX3Oz^4Fj1K3
+Z4 DPx4 ieee 14 std_logic_1164 0 22 cVAk:aDinOX8^VGI1ekP<3
+!i122 3
+R0
+Z5 8C:/Users/Peace/Documents/Docs/DE0-RISC-V-MCU-main/hw/week6/bootloader.vhd
+Z6 FC:/Users/Peace/Documents/Docs/DE0-RISC-V-MCU-main/hw/week6/bootloader.vhd
+l0
+Z7 L11 1
+V2IPafJD<=U5D4kn_bMlRj1
+!s100 ^abfSMe36EfVjUohZ9?0D1
+Z8 OV;C;2020.1;71
+33
+Z9 !s110 1789071353
+!i10b 1
+Z10 !s108 1789071353.000000
+Z11 !s90 -reportprogress|300|-2008|-work|work|C:/Users/Peace/Documents/Docs/DE0-RISC-V-MCU-main/hw/week6/bootloader.vhd|
+Z12 !s107 C:/Users/Peace/Documents/Docs/DE0-RISC-V-MCU-main/hw/week6/bootloader.vhd|
+!i113 1
+Z13 o-2008 -work work
+Z14 tExplicit 1 CvgOpt 0
+Artl
+R2
+R3
+R4
+DEx4 work 10 bootloader 0 22 2IPafJD<=U5D4kn_bMlRj1
+!i122 3
+l100
+L32 303
+Vk0C_iS8aRR?4YLLBR0ezz1
+!s100 ^j3JXO:MoH@gd[b6Rc]A42
+R8
+33
+R9
+!i10b 1
+R10
+R11
+R12
+!i113 1
+R13
+R14
+Ebootloader_tb
+Z15 w1788940807
+R2
+R3
+R4
+!i122 5
+R0
+Z16 8C:/Users/Peace/Documents/Docs/DE0-RISC-V-MCU-main/hw/week6/bootloader_tb.vhd
+Z17 FC:/Users/Peace/Documents/Docs/DE0-RISC-V-MCU-main/hw/week6/bootloader_tb.vhd
+l0
+Z18 L12 1
+VJ`f0Ve9]P9@36QF1M[B512
+!s100 WKHl?Oo^<1no0R504_^nR1
+R8
+33
+R9
+!i10b 1
+R10
+Z19 !s90 -reportprogress|300|-2008|-work|work|C:/Users/Peace/Documents/Docs/DE0-RISC-V-MCU-main/hw/week6/bootloader_tb.vhd|
+!s107 C:/Users/Peace/Documents/Docs/DE0-RISC-V-MCU-main/hw/week6/bootloader_tb.vhd|
+!i113 1
+R13
+R14
+Asim
+R2
+R3
+R4
+DEx4 work 13 bootloader_tb 0 22 J`f0Ve9]P9@36QF1M[B512
+!i122 5
+l116
+L15 196
+V=ERFN>jeBon`nlKPbN[<K0
+!s100 fLzQlN3Q<kIQdaMnhJ`6@1
+R8
+33
+R9
+!i10b 1
+R10
+R19
+Z20 !s107 C:/Users/Peace/Documents/Docs/DE0-RISC-V-MCU-main/hw/week6/bootloader_tb.vhd|
+!i113 1
+R13
+R14
+vpicorv32
+Z21 !s110 1789071352
+!i10b 1
+!s100 K7VjanCB>be=zzB?PHW[71
+Z22 !s11b Dg1SIo80bB@j0V0VzS_@n1
+I?1jN_]WZOTP<OIMC:BhS62
+Z23 VDg1SIo80bB@j0V0VzS_@n1
+R0
+Z24 w1785939451
+Z25 8C:/Users/Peace/Documents/Docs/DE0-RISC-V-MCU-main/hw/week6/picorv32.v
+Z26 FC:/Users/Peace/Documents/Docs/DE0-RISC-V-MCU-main/hw/week6/picorv32.v
+!i122 0
+L0 62 2106
+Z27 OV;L;2020.1;71
+r1
+!s85 0
+31
+Z28 !s108 1789071351.000000
+Z29 !s107 C:/Users/Peace/Documents/Docs/DE0-RISC-V-MCU-main/hw/week6/picorv32.v|
+Z30 !s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+C:/Users/Peace/Documents/Docs/DE0-RISC-V-MCU-main/hw/week6|C:/Users/Peace/Documents/Docs/DE0-RISC-V-MCU-main/hw/week6/picorv32.v|
+!i113 1
+Z31 o-vlog01compat -work work
+Z32 !s92 -vlog01compat -work work +incdir+C:/Users/Peace/Documents/Docs/DE0-RISC-V-MCU-main/hw/week6
+Z33 tCvgOpt 0
+vpicorv32_axi
+R21
+!i10b 1
+!s100 lbN[T]B]keP0=?2VQWYRF0
+R22
+Ijc992@lmf^S;`W:?SSzgO2
+R23
+R0
+R24
+R25
+R26
+!i122 0
+L0 2517 208
+R27
+r1
+!s85 0
+31
+R28
+R29
+R30
+!i113 1
+R31
+R32
+R33
+vpicorv32_axi_adapter
+R21
+!i10b 1
+!s100 CVQcjME]O:3LeYkhbnHm=3
+R22
+Izge;9EXJE?B44MC[Lz;5o1
+R23
+R0
+R24
+R25
+R26
+!i122 0
+L0 2731 78
+R27
+r1
+!s85 0
+31
+R28
+R29
+R30
+!i113 1
+R31
+R32
+R33
+vpicorv32_pcpi_div
+R21
+!i10b 1
+!s100 N<9KkKcf`DB<36o=PHk4a0
+R22
+IlNZihT3D5h1jcmc7UDSaD2
+R23
+R0
+R24
+R25
+R26
+!i122 0
+L0 2420 91
+R27
+r1
+!s85 0
+31
+R28
+R29
+R30
+!i113 1
+R31
+R32
+R33
+vpicorv32_pcpi_fast_mul
+R21
+!i10b 1
+!s100 UBAj0_KfeO7?g0^a34GfA1
+R22
+I8_c]]nkzP=0>35AaEfCoO0
+R23
+R0
+R24
+R25
+R26
+!i122 0
+L0 2318 96
+R27
+r1
+!s85 0
+31
+R28
+R29
+R30
+!i113 1
+R31
+R32
+R33
+vpicorv32_pcpi_mul
+R21
+!i10b 1
+!s100 f]G84_LCXTGd70kga0P<R2
+R22
+Ib@mo^g^lkOQ`I]8bHz6O91
+R23
+R0
+R24
+R25
+R26
+!i122 0
+L0 2197 120
+R27
+r1
+!s85 0
+31
+R28
+R29
+R30
+!i113 1
+R31
+R32
+R33
+vpicorv32_regs
+R21
+!i10b 1
+!s100 FfZfFz4ZE=JLYFLA6KY_`2
+R22
+I6l5YWhl0[ag6EaF`3JbU43
+R23
+R0
+R24
+R25
+R26
+!i122 0
+L0 2174 17
+R27
+r1
+!s85 0
+31
+R28
+R29
+R30
+!i113 1
+R31
+R32
+R33
+vpicorv32_wb
+R21
+!i10b 1
+!s100 32Zz@D:Zo4lYZWJLP5a7<2
+R22
+ILTSgZGX17:8WlOIFnG>``2
+R23
+R0
+R24
+R25
+R26
+!i122 0
+L0 2815 235
+R27
+r1
+!s85 0
+31
+R28
+R29
+R30
+!i113 1
+R31
+R32
+R33
+Eram_16kb
+R24
+Z34 DPx9 altera_mf 20 altera_mf_components 0 22 GX]PGX0dkGdbU698H0h^l0
+R2
+R3
+R4
+!i122 2
+R0
+Z35 8C:/Users/Peace/Documents/Docs/DE0-RISC-V-MCU-main/hw/week6/ram_16kb.vhd
+Z36 FC:/Users/Peace/Documents/Docs/DE0-RISC-V-MCU-main/hw/week6/ram_16kb.vhd
+l0
+R7
+V3AC1WKYYQS:RWjNoJJj6M0
+!s100 i0oio]Th1V9n<[_VoV=a=3
+R8
+33
+R21
+!i10b 1
+Z37 !s108 1789071352.000000
+Z38 !s90 -reportprogress|300|-2008|-work|work|C:/Users/Peace/Documents/Docs/DE0-RISC-V-MCU-main/hw/week6/ram_16kb.vhd|
+Z39 !s107 C:/Users/Peace/Documents/Docs/DE0-RISC-V-MCU-main/hw/week6/ram_16kb.vhd|
+!i113 1
+R13
+R14
+Artl
+R34
+R2
+R3
+R4
+DEx4 work 8 ram_16kb 0 22 3AC1WKYYQS:RWjNoJJj6M0
+!i122 2
+l30
+L22 112
+VE1ao@@5ULTLjnF0RD_cfF3
+!s100 ^]P^1Rm?GbA9Tm<go6O5@2
+R8
+33
+R21
+!i10b 1
+R37
+R38
+R39
+!i113 1
+R13
+R14
+Esoc_boot_top
+Z40 w1789060456
+R2
+R3
+R4
+!i122 4
+R0
+Z41 8C:/Users/Peace/Documents/Docs/DE0-RISC-V-MCU-main/hw/week6/soc_boot_top.vhd
+Z42 FC:/Users/Peace/Documents/Docs/DE0-RISC-V-MCU-main/hw/week6/soc_boot_top.vhd
+l0
+R18
+VUL<^2gA97ZC`TUUoTRgld2
+!s100 ETRSPlAkmQEFJoj_LkRoE3
+R8
+33
+R9
+!i10b 1
+R10
+Z43 !s90 -reportprogress|300|-2008|-work|work|C:/Users/Peace/Documents/Docs/DE0-RISC-V-MCU-main/hw/week6/soc_boot_top.vhd|
+Z44 !s107 C:/Users/Peace/Documents/Docs/DE0-RISC-V-MCU-main/hw/week6/soc_boot_top.vhd|
+!i113 1
+R13
+R14
+Artl
+R2
+R3
+R4
+DEx4 work 12 soc_boot_top 0 22 UL<^2gA97ZC`TUUoTRgld2
+!i122 4
+l146
+L25 280
+VaJIJH=2[a0h@JT>46IU5>0
+!s100 SX5^ZKaI9RZfR074BlXfo1
+R8
+33
+R9
+!i10b 1
+R10
+R43
+R44
+!i113 1
+R13
+R14
+Euart
+Z45 w1788943046
+R2
+R3
+R4
+!i122 1
+R0
+Z46 8C:/Users/Peace/Documents/Docs/DE0-RISC-V-MCU-main/hw/week3/uart.vhd
+Z47 FC:/Users/Peace/Documents/Docs/DE0-RISC-V-MCU-main/hw/week3/uart.vhd
+l0
+L5 1
+VdUI^]c<ZbnX_^9mYMXDC63
+!s100 n5Cf^8QQFG_Be?mejDo>;2
+R8
+33
+R21
+!i10b 1
+R37
+Z48 !s90 -reportprogress|300|-2008|-work|work|C:/Users/Peace/Documents/Docs/DE0-RISC-V-MCU-main/hw/week3/uart.vhd|
+Z49 !s107 C:/Users/Peace/Documents/Docs/DE0-RISC-V-MCU-main/hw/week3/uart.vhd|
+!i113 1
+R13
+R14
+Artl
+R2
+R3
+R4
+DEx4 work 4 uart 0 22 dUI^]c<ZbnX_^9mYMXDC63
+!i122 1
+l54
+L25 151
+VIGzn77^98>BHgP11SmLEE1
+!s100 ^@CkO^aP9@MngE;2K?HE[1
+R8
+33
+R21
+!i10b 1
+R37
+R48
+R49
+!i113 1
+R13
+R14
