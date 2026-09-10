@@ -30,3 +30,4 @@ By Week 12, write C code, compile with riscv32-gcc, upload via UART, and run on 
 - [Week 3-4](hw/week3/README.md) - Full-duplex UART TX/RX 115200
 - [Week 5](hw/week5/README.md) - PicoRV32 + UART + RAM
 - [Week 6](hw/week6/README.md) - PicoRV32 + UART bootloader
+

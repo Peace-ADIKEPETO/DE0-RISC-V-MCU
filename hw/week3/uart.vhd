@@ -6,6 +6,7 @@ entity uart is
     generic (
         CLOCK_FREQ_HZ : positive := 50_000_000;
         BAUD_RATE     : positive := 9600
+
     );
     port (
         clk      : in  std_logic;
