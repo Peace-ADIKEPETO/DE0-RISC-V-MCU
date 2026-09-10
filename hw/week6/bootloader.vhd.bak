@@ -1,0 +1,203 @@
+-- bootloader.vhd
+-- Week 6: UART Bootloader - receives Intel HEX, writes to RAM, boots CPU
+
+library ieee;
+use ieee.std_logic_1164.all;
+use ieee.numeric_std.all;
+
+entity bootloader is
+    port (
+        clk         : in  std_logic;
+        reset_n     : in  std_logic;
+        -- UART interface
+        rx_data     : in  std_logic_vector(7 downto 0);
+        rx_done     : in  std_logic;  -- Pulse: byte received
+        tx_data     : out std_logic_vector(7 downto 0);
+        tx_start    : out std_logic;
+        tx_busy     : in  std_logic;
+        -- RAM interface
+        ram_addr    : out std_logic_vector(11 downto 0);
+        ram_wdata   : out std_logic_vector(31 downto 0);
+        ram_we      : out std_logic;
+        -- CPU control
+        cpu_reset_n : out std_logic;  -- '0' = hold CPU in reset, '1' = run
+        -- Status
+        led_status  : out std_logic_vector(1 downto 0)  -- Debug LEDs
+    );
+end entity bootloader;
+
+architecture rtl of bootloader is
+
+    -- HEX parsing states
+    type hex_state_type is (
+        WAIT_COLON,     -- Wait for ':'
+        GET_LENGTH,     -- Read byte count
+        GET_ADDR_H,     -- Read address high byte
+        GET_ADDR_L,     -- Read address low byte
+        GET_TYPE,       -- Read record type
+        GET_DATA,       -- Read data bytes
+        GET_CHECKSUM,   -- Read checksum
+        PROCESS_RECORD, -- Write data to RAM or boot
+        SEND_ACK        -- Send acknowledgement
+    );
+    signal hex_state : hex_state_type := WAIT_COLON;
+
+    signal byte_count   : integer range 0 to 255 := 0;
+    signal data_idx     : integer range 0 to 255 := 0;
+    signal address      : std_logic_vector(15 downto 0) := (others => '0');
+    signal rec_type     : std_logic_vector(7 downto 0) := (others => '0');
+    signal checksum     : std_logic_vector(7 downto 0) := (others => '0');
+    signal calc_checksum : unsigned(7 downto 0) := (others => '0');
+    
+    -- Data buffer: collect 4 bytes into 1 word
+    signal data_buffer  : std_logic_vector(31 downto 0) := (others => '0');
+    signal byte_position : integer range 0 to 3 := 0;
+    
+    -- RAM word address (byte address / 4)
+    signal word_addr    : std_logic_vector(11 downto 0) := (others => '0');
+    
+    -- CPU reset control
+    signal cpu_reset_int : std_logic := '0';  -- Start held in reset
+    
+    -- ACK message
+    signal send_ack     : std_logic := '0';
+
+begin
+
+    cpu_reset_n <= cpu_reset_int;
+    led_status(0) <= cpu_reset_int;  -- LED ON when CPU running
+    led_status(1) <= not cpu_reset_int; -- LED ON when in bootloader mode
+
+    -- =============================================
+    -- BOOTLOADER STATE MACHINE
+    -- =============================================
+    process(clk, reset_n)
+    begin
+        if reset_n = '0' then
+            hex_state   <= WAIT_COLON;
+            byte_count  <= 0;
+            data_idx    <= 0;
+            address     <= (others => '0');
+            rec_type    <= (others => '0');
+            checksum    <= (others => '0');
+            calc_checksum <= (others => '0');
+            data_buffer <= (others => '0');
+            byte_position <= 0;
+            word_addr   <= (others => '0');
+            ram_addr    <= (others => '0');
+            ram_wdata   <= (others => '0');
+            ram_we      <= '0';
+            cpu_reset_int <= '0';
+            tx_data     <= (others => '0');
+            tx_start    <= '0';
+            send_ack    <= '0';
+        elsif rising_edge(clk) then
+            -- Defaults
+            ram_we   <= '0';
+            tx_start <= '0';
+
+            case hex_state is
+
+                when WAIT_COLON =>
+                    if rx_done = '1' and rx_data = x"3A" then  -- ':'
+                        hex_state    <= GET_LENGTH;
+                        calc_checksum <= (others => '0');
+                    end if;
+
+                when GET_LENGTH =>
+                    if rx_done = '1' then
+                        byte_count    <= to_integer(unsigned(rx_data));
+                        calc_checksum <= calc_checksum + unsigned(rx_data);
+                        hex_state     <= GET_ADDR_H;
+                    end if;
+
+                when GET_ADDR_H =>
+                    if rx_done = '1' then
+                        address(15 downto 8) <= rx_data;
+                        calc_checksum <= calc_checksum + unsigned(rx_data);
+                        hex_state     <= GET_ADDR_L;
+                    end if;
+
+                when GET_ADDR_L =>
+                    if rx_done = '1' then
+                        address(7 downto 0) <= rx_data;
+                        calc_checksum <= calc_checksum + unsigned(rx_data);
+                        hex_state     <= GET_TYPE;
+                    end if;
+
+                when GET_TYPE =>
+                    if rx_done = '1' then
+                        rec_type      <= rx_data;
+                        calc_checksum <= calc_checksum + unsigned(rx_data);
+                        if byte_count = 0 then
+                            hex_state <= GET_CHECKSUM;
+                        else
+                            data_idx     <= 0;
+                            byte_position <= 0;
+                            hex_state    <= GET_DATA;
+                        end if;
+                    end if;
+
+                when GET_DATA =>
+                    if rx_done = '1' then
+                        calc_checksum <= calc_checksum + unsigned(rx_data);
+                        
+                        -- Assemble bytes into 32-bit word (little-endian)
+                        case byte_position is
+                            when 0 => data_buffer(7 downto 0)   <= rx_data;
+                            when 1 => data_buffer(15 downto 8)  <= rx_data;
+                            when 2 => data_buffer(23 downto 16) <= rx_data;
+                            when 3 => data_buffer(31 downto 24) <= rx_data;
+                        end case;
+                        
+                        if byte_position = 3 then
+                            -- Write word to RAM
+                            word_addr <= address(13 downto 2);
+                            ram_addr  <= address(13 downto 2);
+                            ram_wdata <= data_buffer(31 downto 24) & data_buffer(23 downto 16) & 
+                                         data_buffer(15 downto 8) & data_buffer(7 downto 0);
+                            ram_we    <= '1';
+                            byte_position <= 0;
+                            -- Increment word address for next word
+                            address <= std_logic_vector(unsigned(address) + 4);
+                        else
+                            byte_position <= byte_position + 1;
+                        end if;
+                        
+                        if data_idx = byte_count - 1 then
+                            hex_state <= GET_CHECKSUM;
+                        else
+                            data_idx <= data_idx + 1;
+                        end if;
+                    end if;
+
+                when GET_CHECKSUM =>
+                    if rx_done = '1' then
+                        checksum <= rx_data;
+                        hex_state <= PROCESS_RECORD;
+                    end if;
+
+                when PROCESS_RECORD =>
+                    -- Verify checksum: sum of all bytes + checksum should = 0 (mod 256)
+                    -- We computed sum of all bytes; checksum = two's complement
+                    if rec_type = x"01" then  -- EOF record
+                        cpu_reset_int <= '1';  -- Release CPU from reset!
+                        hex_state <= SEND_ACK;
+                    elsif rec_type = x"00" then  -- Data record
+                        hex_state <= WAIT_COLON;   -- Ready for next line
+                    else
+                        hex_state <= WAIT_COLON;   -- Ignore other record types
+                    end if;
+
+                when SEND_ACK =>
+                    if tx_busy = '0' then
+                        tx_data  <= x"4F";  -- 'O' for OK
+                        tx_start <= '1';
+                        hex_state <= WAIT_COLON;  -- Shouldn't need more, but safe
+                    end if;
+
+            end case;
+        end if;
+    end process;
+
+end architecture rtl;

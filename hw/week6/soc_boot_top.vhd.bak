@@ -1,0 +1,297 @@
+-- soc_boot_top.vhd
+-- Week 6: SoC with UART Bootloader
+
+library ieee;
+use ieee.std_logic_1164.all;
+use ieee.numeric_std.all;
+
+entity soc_boot_top is
+    port (
+        clk     : in  std_logic;
+        reset_n : in  std_logic;  -- BTN0
+        -- UART
+        rx      : in  std_logic;
+        tx      : out std_logic;
+        -- GPIO
+        led     : out std_logic_vector(7 downto 0);
+        sw      : in  std_logic_vector(3 downto 0)
+    );
+end entity soc_boot_top;
+
+architecture rtl of soc_boot_top is
+
+    -- UART
+    component uart is
+        generic (
+            CLOCK_FREQ_HZ : positive := 50_000_000;
+            BAUD_RATE     : positive := 115200
+        );
+        port (
+            clk      : in  std_logic;
+            reset_n  : in  std_logic;
+            tx_data  : in  std_logic_vector(7 downto 0);
+            tx_start : in  std_logic;
+            tx       : out std_logic;
+            tx_busy  : out std_logic;
+            rx       : in  std_logic;
+            rx_data  : out std_logic_vector(7 downto 0);
+            rx_done  : out std_logic
+        );
+    end component;
+
+    -- Bootloader
+    component bootloader is
+        port (
+            clk         : in  std_logic;
+            reset_n     : in  std_logic;
+            rx_data     : in  std_logic_vector(7 downto 0);
+            rx_done     : in  std_logic;
+            tx_data     : out std_logic_vector(7 downto 0);
+            tx_start    : out std_logic;
+            tx_busy     : in  std_logic;
+            ram_addr    : out std_logic_vector(11 downto 0);
+            ram_wdata   : out std_logic_vector(31 downto 0);
+            ram_we      : out std_logic;
+            cpu_reset_n : out std_logic;
+            led_status  : out std_logic_vector(1 downto 0)
+        );
+    end component;
+
+    -- RAM
+    component ram_16kb is
+        port (
+            clk   : in  std_logic;
+            addr  : in  std_logic_vector(11 downto 0);
+            wdata : in  std_logic_vector(31 downto 0);
+            wstrb : in  std_logic_vector(3 downto 0);
+            rdata : out std_logic_vector(31 downto 0);
+            we    : in  std_logic
+        );
+    end component;
+
+    -- PicoRV32
+    component picorv32 is
+        generic (
+            ENABLE_COUNTERS      : integer := 0;
+            CATCH_MISALIGN       : integer := 0;
+            CATCH_ILLINSN        : integer := 0;
+            ENABLE_IRQ           : integer := 0;
+            BARREL_SHIFTER       : integer := 0;
+            COMPRESSED_ISA       : integer := 0;
+            STACKADDR            : std_logic_vector(31 downto 0) := x"00003FFC"
+        );
+        port (
+            clk         : in  std_logic;
+            resetn      : in  std_logic;
+            trap        : out std_logic;
+            mem_valid   : out std_logic;
+            mem_instr   : out std_logic;
+            mem_ready   : in  std_logic;
+            mem_addr    : out std_logic_vector(31 downto 0);
+            mem_wdata   : out std_logic_vector(31 downto 0);
+            mem_wstrb   : out std_logic_vector(3 downto 0);
+            mem_rdata   : in  std_logic_vector(31 downto 0)
+        );
+    end component;
+
+    -- UART signals
+    signal rx_data     : std_logic_vector(7 downto 0);
+    signal rx_done     : std_logic;
+    signal tx_data     : std_logic_vector(7 downto 0);
+    signal tx_start    : std_logic;
+    signal tx_busy     : std_logic;
+    signal bl_tx_data  : std_logic_vector(7 downto 0);
+    signal bl_tx_start : std_logic;
+    signal cpu_tx_data : std_logic_vector(7 downto 0);
+    signal cpu_tx_start : std_logic;
+
+    -- Bootloader signals
+    signal bl_ram_addr  : std_logic_vector(11 downto 0);
+    signal bl_ram_wdata : std_logic_vector(31 downto 0);
+    signal bl_ram_we    : std_logic;
+    signal cpu_reset_n  : std_logic;
+    signal bl_led       : std_logic_vector(1 downto 0);
+
+    -- CPU signals
+    signal cpu_mem_valid : std_logic;
+    signal cpu_mem_instr : std_logic;
+    signal cpu_mem_ready : std_logic;
+    signal cpu_mem_addr  : std_logic_vector(31 downto 0);
+    signal cpu_mem_wdata : std_logic_vector(31 downto 0);
+    signal cpu_mem_wstrb : std_logic_vector(3 downto 0);
+    signal cpu_mem_rdata : std_logic_vector(31 downto 0);
+    signal cpu_trap      : std_logic;
+
+    -- RAM signals
+    signal ram_rdata     : std_logic_vector(31 downto 0);
+    signal ram_addr      : std_logic_vector(11 downto 0);
+    signal ram_wdata     : std_logic_vector(31 downto 0);
+    signal ram_we        : std_logic;
+    
+    -- Memory map
+    signal is_ram        : std_logic;
+    signal is_gpio_out   : std_logic;
+    signal is_gpio_in    : std_logic;
+    signal gpio_out_reg  : std_logic_vector(31 downto 0) := (others => '0');
+    signal gpio_in_reg   : std_logic_vector(31 downto 0);
+    
+    -- POR and reset
+    signal por_counter   : unsigned(3 downto 0) := (others => '0');
+    signal por_reset_n   : std_logic := '0';
+    signal sys_reset_n   : std_logic;
+
+begin
+
+    -- =============================================
+    -- POWER-ON-RESET
+    -- =============================================
+    process(clk)
+    begin
+        if rising_edge(clk) then
+            if por_counter < 15 then
+                por_counter <= por_counter + 1;
+                por_reset_n <= '0';
+            else
+                por_reset_n <= '1';
+            end if;
+        end if;
+    end process;
+    sys_reset_n <= por_reset_n and reset_n;
+
+    -- =============================================
+    -- UART (shared between bootloader and CPU)
+    -- =============================================
+    -- For now, bootloader controls UART. CPU will later via mux.
+    u_uart: uart
+        generic map (
+            CLOCK_FREQ_HZ => 50_000_000,
+            BAUD_RATE     => 115200
+        )
+        port map (
+            clk      => clk,
+            reset_n  => sys_reset_n,
+            tx_data  => tx_data,
+            tx_start => tx_start,
+            tx       => tx,
+            tx_busy  => tx_busy,
+            rx       => rx,
+            rx_data  => rx_data,
+            rx_done  => rx_done
+        );
+    
+    -- Bootloader controls UART TX for ACK
+    tx_data  <= bl_tx_data;
+    tx_start <= bl_tx_start;
+
+    -- =============================================
+    -- BOOTLOADER
+    -- =============================================
+    u_boot: bootloader
+        port map (
+            clk         => clk,
+            reset_n     => sys_reset_n,
+            rx_data     => rx_data,
+            rx_done     => rx_done,
+            tx_data     => bl_tx_data,
+            tx_start    => bl_tx_start,
+            tx_busy     => tx_busy,
+            ram_addr    => bl_ram_addr,
+            ram_wdata   => bl_ram_wdata,
+            ram_we      => bl_ram_we,
+            cpu_reset_n => cpu_reset_n,
+            led_status  => bl_led
+        );
+
+    -- =============================================
+    -- RAM (shared: bootloader writes, CPU reads)
+    -- =============================================
+    -- Mux: bootloader controls RAM when CPU is in reset
+    ram_addr  <= bl_ram_addr  when cpu_reset_n = '0' else cpu_mem_addr(13 downto 2);
+    ram_wdata <= bl_ram_wdata when cpu_reset_n = '0' else cpu_mem_wdata;
+    ram_we    <= bl_ram_we    when cpu_reset_n = '0' else 
+                 (cpu_mem_valid and is_ram and (cpu_mem_wstrb(0) or cpu_mem_wstrb(1) or cpu_mem_wstrb(2) or cpu_mem_wstrb(3)));
+
+    u_ram: ram_16kb
+        port map (
+            clk   => clk,
+            addr  => ram_addr,
+            wdata => ram_wdata,
+            wstrb => cpu_mem_wstrb,  -- Only CPU uses byte-enables; bootloader writes whole words
+            rdata => ram_rdata,
+            we    => ram_we
+        );
+
+    -- =============================================
+    -- MEMORY MAP DECODER
+    -- =============================================
+    is_ram      <= '1' when cpu_mem_addr(31 downto 14) = "000000000000000000" else '0';
+    is_gpio_out <= '1' when cpu_mem_addr = x"40000000" else '0';
+    is_gpio_in  <= '1' when cpu_mem_addr = x"40000004" else '0';
+
+    -- Bus mux: CPU reads from RAM or GPIO
+    cpu_mem_rdata <= ram_rdata      when is_ram = '1'     else
+                     gpio_in_reg    when is_gpio_in = '1' else
+                     (others => '0');
+
+    -- mem_ready: 1-cycle latency
+    process(clk)
+    begin
+        if rising_edge(clk) then
+            if sys_reset_n = '0' or cpu_reset_n = '0' then
+                cpu_mem_ready <= '0';
+            else
+                cpu_mem_ready <= cpu_mem_valid;
+            end if;
+        end if;
+    end process;
+
+    -- =============================================
+    -- GPIO OUTPUT REGISTER
+    -- =============================================
+    process(clk)
+    begin
+        if rising_edge(clk) then
+            if sys_reset_n = '0' then
+                gpio_out_reg <= (others => '0');
+            elsif is_gpio_out = '1' and cpu_mem_valid = '1' and cpu_mem_wstrb(0) = '1' then
+                gpio_out_reg <= cpu_mem_wdata;
+            end if;
+        end if;
+    end process;
+
+    gpio_in_reg <= x"000000" & "0000" & sw;
+
+    -- =============================================
+    -- CPU
+    -- =============================================
+    u_cpu: picorv32
+        generic map (
+            ENABLE_COUNTERS    => 0,
+            CATCH_MISALIGN     => 0,
+            CATCH_ILLINSN      => 0,
+            ENABLE_IRQ         => 0,
+            BARREL_SHIFTER     => 0,
+            COMPRESSED_ISA     => 0,
+            STACKADDR          => x"00003FFC"
+        )
+        port map (
+            clk         => clk,
+            resetn      => cpu_reset_n,  -- Controlled by bootloader!
+            trap        => cpu_trap,
+            mem_valid   => cpu_mem_valid,
+            mem_instr   => cpu_mem_instr,
+            mem_ready   => cpu_mem_ready,
+            mem_addr    => cpu_mem_addr,
+            mem_wdata   => cpu_mem_wdata,
+            mem_wstrb   => cpu_mem_wstrb,
+            mem_rdata   => cpu_mem_rdata
+        );
+
+    -- =============================================
+    -- LEDS
+    -- =============================================
+    -- Show bootloader status when CPU is reset, GPIO when CPU runs
+    led(1 downto 0) <= bl_led when cpu_reset_n = '0' else gpio_out_reg(1 downto 0);
+    led(7 downto 2) <= (others => '0') when cpu_reset_n = '0' else gpio_out_reg(7 downto 2);
+
+end architecture rtl;
