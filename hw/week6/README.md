@@ -57,10 +57,6 @@ UTF-8 without BOM, Windows CRLF line endings.
 - ✅ CPU executes uploaded program (LED[7] turned ON)
 - ✅ Python upload script works
 
-## Python Upload
-```bash
-python upload.py COM4 program.hex
-
 ## Wiring
 |DE0-Nano	|Arduino    |
 |---------------|-----------|
@@ -76,3 +72,7 @@ Byte ordering matters — always verify against known reference
 Python pyserial + Arduino requires explicit reset delay
 
 Simulation passes ≠ hardware works; timing and encoding differ
+
+## Python Upload
+```bash
+python upload.py COM4 blink.hex
