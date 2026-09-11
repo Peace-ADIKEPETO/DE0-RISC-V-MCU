@@ -142,12 +142,22 @@ architecture rtl of soc_boot_top is
     signal por_counter   : unsigned(4 downto 0) := (others => '0');  -- widened (5 bits) to actually reach 16
     signal por_reset_n   : std_logic := '0';
     signal sys_reset_n   : std_logic;
-
+	 
+	 signal cpu_uart_tx_data  : std_logic_vector(7 downto 0) := (others => '0');
+    signal cpu_uart_tx_start : std_logic := '0';
+    signal is_uart_tx        : std_logic;
+    signal is_uart_tx_status : std_logic;
+    signal is_uart_rx        : std_logic;
+    signal uart_rx_hold      : std_logic_vector(7 downto 0) := (others => '0');
+    signal uart_rx_valid     : std_logic := '0';
+    signal bl_rx_done        : std_logic;  -- gated version bootloader actually sees
+	 
 begin
 
     -- =============================================
     -- POWER-ON-RESET
     -- =============================================	 
+	 
     process(clk)
     begin
         if rising_edge(clk) then
@@ -181,8 +191,13 @@ begin
             rx_done  => rx_done
         );
 
-    tx_data  <= bl_tx_data;
-    tx_start <= bl_tx_start;
+    tx_data  <= bl_tx_data  when cpu_reset_n = '0' else cpu_uart_tx_data;
+    tx_start <= bl_tx_start when cpu_reset_n = '0' else cpu_uart_tx_start;
+	 
+	 is_uart_tx        <= '1' when cpu_mem_addr = x"40001000" else '0';
+    is_uart_tx_status <= '1' when cpu_mem_addr = x"40001004" else '0';
+    is_uart_rx         <= '1' when cpu_mem_addr = x"40001008" else '0';
+	 
 
     -- =============================================
     -- BOOTLOADER
@@ -192,7 +207,7 @@ begin
             clk         => clk,
             reset_n     => sys_reset_n,
             rx_data     => rx_data,
-            rx_done     => rx_done,
+            rx_done     => bl_rx_done,
             tx_data     => bl_tx_data,
             tx_start    => bl_tx_start,
             tx_busy     => tx_busy,
@@ -202,6 +217,12 @@ begin
             cpu_reset_n => cpu_reset_n,
             led_status  => bl_led
         );
+		  
+	 -- Bootloader only sees UART bytes while it actually owns the bus.
+    -- Prevents a typed ':' during normal CPU operation from being
+    -- misinterpreted as the start of a new (and potentially corrupting)
+    -- Intel HEX record while the CPU is running.
+        bl_rx_done <= rx_done when cpu_reset_n = '0' else '0';
 
     -- =============================================
     -- RAM (shared: bootloader writes, CPU reads/writes)
@@ -233,10 +254,14 @@ begin
     is_ram      <= '1' when cpu_mem_addr(31 downto 14) = "000000000000000000" else '0';
     is_gpio_out <= '1' when cpu_mem_addr = x"40000000" else '0';
     is_gpio_in  <= '1' when cpu_mem_addr = x"40000004" else '0';
-
-    cpu_mem_rdata <= ram_rdata      when is_ram = '1'     else
-                     gpio_in_reg    when is_gpio_in = '1' else
-                     (others => '0');
+	 
+	 
+    cpu_mem_rdata <= ram_rdata                                            when is_ram = '1'         else
+                  gpio_in_reg                                          when is_gpio_in = '1'     else
+                  gpio_out_reg                                         when is_gpio_out = '1'    else
+                  (x"0000000" & "000" & tx_busy)                       when is_uart_tx_status = '1' else
+                  (x"00000" & "000" & uart_rx_valid & uart_rx_hold) when is_uart_rx = '1'    else
+                  (others => '0');
 
     process(clk)
     begin
@@ -262,6 +287,51 @@ begin
                 gpio_out_reg <= cpu_mem_wdata;
             end if;
         end if;
+    end process;
+	 
+	 -- TX Register
+	 
+	 process(clk)
+      begin
+    if rising_edge(clk) then
+        if sys_reset_n = '0' then
+            cpu_uart_tx_data  <= (others => '0');
+            cpu_uart_tx_start <= '0';
+        else
+            cpu_uart_tx_start <= '0';  -- default: pulses exactly one cycle
+            if is_uart_tx = '1' and cpu_mem_valid = '1' and cpu_mem_wstrb(0) = '1' then
+                cpu_uart_tx_data  <= cpu_mem_wdata(7 downto 0);
+                cpu_uart_tx_start <= '1';
+            end if;
+        end if;
+    end if;
+    end process;
+	 
+ -- RX capture
+	 
+	 process(clk)
+      begin
+      if rising_edge(clk) then
+        if sys_reset_n = '0' then
+            uart_rx_hold  <= (others => '0');
+            uart_rx_valid <= '0';
+        else
+            -- New byte arrives: latch it (only matters when CPU owns the
+            -- bus; rx_done still fires from the shared uart module
+            -- regardless of who's listening, so this simply captures
+            -- whatever comes in while the CPU is running).
+            if rx_done = '1' and cpu_reset_n = '1' then
+                uart_rx_hold  <= rx_data;
+                uart_rx_valid <= '1';
+            -- CPU reads the RX register: clear valid on the same cycle
+            -- the read is issued (mem_valid + wstrb="0000" = a read),
+            -- not on mem_ready, to match the 1-cycle latency already
+            -- used elsewhere in this design.
+            elsif is_uart_rx = '1' and cpu_mem_valid = '1' and cpu_mem_wstrb = "0000" then
+                uart_rx_valid <= '0';
+            end if;
+         end if;
+       end if;
     end process;
 
     gpio_in_reg <= x"000000" & "0000" & sw;

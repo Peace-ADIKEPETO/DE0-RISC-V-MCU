@@ -20,8 +20,8 @@ By Week 12, write C code, compile with riscv32-gcc, upload via UART, and run on 
 - ✅ Week 2: GPIO module
 - ✅ Week 3-4: UART TX/RX
 - ✅ Week 5-6: PicoRV32 + UART bootloader
-- 🔄 Week 7-8: C toolchain + blink.c
-- [ ] Week 9-10: Timer, Interrupts, SPI OLED
+- ✅ Week 7-8: C toolchain + blink.c
+- 🔄 Week 9-10: Timer, Interrupts, SPI OLED
 - [ ] Week 11-12: Integration + Dhrystone
 
 ## Weekly Summaries
@@ -30,4 +30,6 @@ By Week 12, write C code, compile with riscv32-gcc, upload via UART, and run on 
 - [Week 3-4](hw/week3/README.md) - Full-duplex UART TX/RX 115200
 - [Week 5](hw/week5/README.md) - PicoRV32 + UART + RAM
 - [Week 6](hw/week6/README.md) - PicoRV32 + UART bootloader
+- [Week 7](hw/week7/README.md) - C toolchain + blink.c
+- [Week 8](hw/week8/README.md) - UART C library
 
