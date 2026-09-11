@@ -1,0 +1,47 @@
+# Makefile.common - Shared build rules for DE0-RISCV MCU
+
+PREFIX  = riscv-none-elf-
+CC      = $(PREFIX)gcc
+OBJCOPY = $(PREFIX)objcopy
+OBJDUMP = $(PREFIX)objdump
+SIZE    = $(PREFIX)size
+
+# RV32I — must match PicoRV32 config (no M, no C, no A)
+ARCH    = -march=rv32i -mabi=ilp32
+
+# Freestanding, no libc, no startup files
+CFLAGS  = $(ARCH) -Os -Wall -Wextra -ffreestanding -nostdlib -nostartfiles
+
+# Library paths
+LIB_DIR = ../../riscv-lib
+
+# Defaults — override with `make TARGET=foo`
+TARGET ?= program
+SRCS   ?= main.c
+
+OBJS = $(SRCS:.c=.o) $(LIB_DIR)/start.o
+
+$(TARGET).elf: $(OBJS) $(LIB_DIR)/link.ld
+	$(CC) $(CFLAGS) -T $(LIB_DIR)/link.ld -o $@ $(OBJS) -lgcc
+
+$(TARGET).hex: $(TARGET).elf
+	$(OBJCOPY) -O ihex $< $@
+	@echo ""
+	@$(SIZE) $<
+	@echo ""
+	@echo "Built $(TARGET).hex"
+	@echo "Upload: python ../../bootloader/upload.py COMx $(TARGET).hex"
+
+%.o: %.c
+	$(CC) $(CFLAGS) -I$(LIB_DIR) -c $< -o $@
+
+$(LIB_DIR)/start.o: $(LIB_DIR)/start.S
+	$(CC) $(CFLAGS) -c $< -o $@
+
+clean:
+	rm -f *.o *.elf *.hex $(LIB_DIR)/start.o
+
+disasm: $(TARGET).elf
+	$(OBJDUMP) -d $< | head -100
+
+.PHONY: clean disasm

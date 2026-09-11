@@ -1,5 +1,5 @@
 Analysis & Synthesis report for week6
-Thu Sep 10 22:13:11 2026
+Fri Sep 11 01:30:40 2026
 Quartus Prime Version 22.1std.1 Build 917 02/14/2023 SC Lite Edition
 
 
@@ -70,7 +70,7 @@ https://fpgasoftware.intel.com/eula.
 +-------------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                        ;
 +------------------------------------+------------------------------------------------+
-; Analysis & Synthesis Status        ; Successful - Thu Sep 10 22:13:11 2026          ;
+; Analysis & Synthesis Status        ; Successful - Fri Sep 11 01:30:40 2026          ;
 ; Quartus Prime Version              ; 22.1std.1 Build 917 02/14/2023 SC Lite Edition ;
 ; Revision Name                      ; week6                                          ;
 ; Top-level Entity Name              ; soc_boot_top                                   ;
@@ -191,35 +191,35 @@ https://fpgasoftware.intel.com/eula.
 +----------------------------+-------------+
 
 
-+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Analysis & Synthesis Source Files Read                                                                                                                                              ;
-+----------------------------------+-----------------+----------------------------------+-----------------------------------------------------------------------------------+---------+
-; File Name with User-Entered Path ; Used in Netlist ; File Type                        ; File Name with Absolute Path                                                      ; Library ;
-+----------------------------------+-----------------+----------------------------------+-----------------------------------------------------------------------------------+---------+
-; ../week3/uart.vhd                ; yes             ; User VHDL File                   ; C:/Users/Peace/Documents/Docs/DE0-RISC-V-MCU-main/hw/week3/uart.vhd               ;         ;
-; picorv32.v                       ; yes             ; User Verilog HDL File            ; C:/Users/Peace/Documents/Docs/DE0-RISC-V-MCU-main/hw/week6/picorv32.v             ;         ;
-; ram_16kb.vhd                     ; yes             ; User VHDL File                   ; C:/Users/Peace/Documents/Docs/DE0-RISC-V-MCU-main/hw/week6/ram_16kb.vhd           ;         ;
-; bootloader.vhd                   ; yes             ; User VHDL File                   ; C:/Users/Peace/Documents/Docs/DE0-RISC-V-MCU-main/hw/week6/bootloader.vhd         ;         ;
-; soc_boot_top.vhd                 ; yes             ; User VHDL File                   ; C:/Users/Peace/Documents/Docs/DE0-RISC-V-MCU-main/hw/week6/soc_boot_top.vhd       ;         ;
-; ram_byte0.mif                    ; yes             ; User Memory Initialization File  ; C:/Users/Peace/Documents/Docs/DE0-RISC-V-MCU-main/hw/week6/ram_byte0.mif          ;         ;
-; ram_byte1.mif                    ; yes             ; User Memory Initialization File  ; C:/Users/Peace/Documents/Docs/DE0-RISC-V-MCU-main/hw/week6/ram_byte1.mif          ;         ;
-; ram_byte2.mif                    ; yes             ; User Memory Initialization File  ; C:/Users/Peace/Documents/Docs/DE0-RISC-V-MCU-main/hw/week6/ram_byte2.mif          ;         ;
-; ram_byte3.mif                    ; yes             ; User Memory Initialization File  ; C:/Users/Peace/Documents/Docs/DE0-RISC-V-MCU-main/hw/week6/ram_byte3.mif          ;         ;
-; altsyncram.tdf                   ; yes             ; Megafunction                     ; e:/intelfpga_lite/22.1std/quartus/libraries/megafunctions/altsyncram.tdf          ;         ;
-; stratix_ram_block.inc            ; yes             ; Megafunction                     ; e:/intelfpga_lite/22.1std/quartus/libraries/megafunctions/stratix_ram_block.inc   ;         ;
-; lpm_mux.inc                      ; yes             ; Megafunction                     ; e:/intelfpga_lite/22.1std/quartus/libraries/megafunctions/lpm_mux.inc             ;         ;
-; lpm_decode.inc                   ; yes             ; Megafunction                     ; e:/intelfpga_lite/22.1std/quartus/libraries/megafunctions/lpm_decode.inc          ;         ;
-; aglobal221.inc                   ; yes             ; Megafunction                     ; e:/intelfpga_lite/22.1std/quartus/libraries/megafunctions/aglobal221.inc          ;         ;
-; a_rdenreg.inc                    ; yes             ; Megafunction                     ; e:/intelfpga_lite/22.1std/quartus/libraries/megafunctions/a_rdenreg.inc           ;         ;
-; altrom.inc                       ; yes             ; Megafunction                     ; e:/intelfpga_lite/22.1std/quartus/libraries/megafunctions/altrom.inc              ;         ;
-; altram.inc                       ; yes             ; Megafunction                     ; e:/intelfpga_lite/22.1std/quartus/libraries/megafunctions/altram.inc              ;         ;
-; altdpram.inc                     ; yes             ; Megafunction                     ; e:/intelfpga_lite/22.1std/quartus/libraries/megafunctions/altdpram.inc            ;         ;
-; db/altsyncram_94q3.tdf           ; yes             ; Auto-Generated Megafunction      ; C:/Users/Peace/Documents/Docs/DE0-RISC-V-MCU-main/hw/week6/db/altsyncram_94q3.tdf ;         ;
-; db/altsyncram_a4q3.tdf           ; yes             ; Auto-Generated Megafunction      ; C:/Users/Peace/Documents/Docs/DE0-RISC-V-MCU-main/hw/week6/db/altsyncram_a4q3.tdf ;         ;
-; db/altsyncram_b4q3.tdf           ; yes             ; Auto-Generated Megafunction      ; C:/Users/Peace/Documents/Docs/DE0-RISC-V-MCU-main/hw/week6/db/altsyncram_b4q3.tdf ;         ;
-; db/altsyncram_c4q3.tdf           ; yes             ; Auto-Generated Megafunction      ; C:/Users/Peace/Documents/Docs/DE0-RISC-V-MCU-main/hw/week6/db/altsyncram_c4q3.tdf ;         ;
-; db/altsyncram_trd1.tdf           ; yes             ; Auto-Generated Megafunction      ; C:/Users/Peace/Documents/Docs/DE0-RISC-V-MCU-main/hw/week6/db/altsyncram_trd1.tdf ;         ;
-+----------------------------------+-----------------+----------------------------------+-----------------------------------------------------------------------------------+---------+
++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Source Files Read                                                                                                                                            ;
++----------------------------------+-----------------+----------------------------------+---------------------------------------------------------------------------------+---------+
+; File Name with User-Entered Path ; Used in Netlist ; File Type                        ; File Name with Absolute Path                                                    ; Library ;
++----------------------------------+-----------------+----------------------------------+---------------------------------------------------------------------------------+---------+
+; ../week3/uart.vhd                ; yes             ; User VHDL File                   ; C:/DE0-RISC-V-MCU/hw/week3/uart.vhd                                             ;         ;
+; picorv32.v                       ; yes             ; User Verilog HDL File            ; C:/DE0-RISC-V-MCU/hw/week6/picorv32.v                                           ;         ;
+; ram_16kb.vhd                     ; yes             ; User VHDL File                   ; C:/DE0-RISC-V-MCU/hw/week6/ram_16kb.vhd                                         ;         ;
+; bootloader.vhd                   ; yes             ; User VHDL File                   ; C:/DE0-RISC-V-MCU/hw/week6/bootloader.vhd                                       ;         ;
+; soc_boot_top.vhd                 ; yes             ; User VHDL File                   ; C:/DE0-RISC-V-MCU/hw/week6/soc_boot_top.vhd                                     ;         ;
+; ram_byte0.mif                    ; yes             ; User Memory Initialization File  ; C:/DE0-RISC-V-MCU/hw/week6/ram_byte0.mif                                        ;         ;
+; ram_byte1.mif                    ; yes             ; User Memory Initialization File  ; C:/DE0-RISC-V-MCU/hw/week6/ram_byte1.mif                                        ;         ;
+; ram_byte2.mif                    ; yes             ; User Memory Initialization File  ; C:/DE0-RISC-V-MCU/hw/week6/ram_byte2.mif                                        ;         ;
+; ram_byte3.mif                    ; yes             ; User Memory Initialization File  ; C:/DE0-RISC-V-MCU/hw/week6/ram_byte3.mif                                        ;         ;
+; altsyncram.tdf                   ; yes             ; Megafunction                     ; e:/intelfpga_lite/22.1std/quartus/libraries/megafunctions/altsyncram.tdf        ;         ;
+; stratix_ram_block.inc            ; yes             ; Megafunction                     ; e:/intelfpga_lite/22.1std/quartus/libraries/megafunctions/stratix_ram_block.inc ;         ;
+; lpm_mux.inc                      ; yes             ; Megafunction                     ; e:/intelfpga_lite/22.1std/quartus/libraries/megafunctions/lpm_mux.inc           ;         ;
+; lpm_decode.inc                   ; yes             ; Megafunction                     ; e:/intelfpga_lite/22.1std/quartus/libraries/megafunctions/lpm_decode.inc        ;         ;
+; aglobal221.inc                   ; yes             ; Megafunction                     ; e:/intelfpga_lite/22.1std/quartus/libraries/megafunctions/aglobal221.inc        ;         ;
+; a_rdenreg.inc                    ; yes             ; Megafunction                     ; e:/intelfpga_lite/22.1std/quartus/libraries/megafunctions/a_rdenreg.inc         ;         ;
+; altrom.inc                       ; yes             ; Megafunction                     ; e:/intelfpga_lite/22.1std/quartus/libraries/megafunctions/altrom.inc            ;         ;
+; altram.inc                       ; yes             ; Megafunction                     ; e:/intelfpga_lite/22.1std/quartus/libraries/megafunctions/altram.inc            ;         ;
+; altdpram.inc                     ; yes             ; Megafunction                     ; e:/intelfpga_lite/22.1std/quartus/libraries/megafunctions/altdpram.inc          ;         ;
+; db/altsyncram_94q3.tdf           ; yes             ; Auto-Generated Megafunction      ; C:/DE0-RISC-V-MCU/hw/week6/db/altsyncram_94q3.tdf                               ;         ;
+; db/altsyncram_a4q3.tdf           ; yes             ; Auto-Generated Megafunction      ; C:/DE0-RISC-V-MCU/hw/week6/db/altsyncram_a4q3.tdf                               ;         ;
+; db/altsyncram_b4q3.tdf           ; yes             ; Auto-Generated Megafunction      ; C:/DE0-RISC-V-MCU/hw/week6/db/altsyncram_b4q3.tdf                               ;         ;
+; db/altsyncram_c4q3.tdf           ; yes             ; Auto-Generated Megafunction      ; C:/DE0-RISC-V-MCU/hw/week6/db/altsyncram_c4q3.tdf                               ;         ;
+; db/altsyncram_trd1.tdf           ; yes             ; Auto-Generated Megafunction      ; C:/DE0-RISC-V-MCU/hw/week6/db/altsyncram_trd1.tdf                               ;         ;
++----------------------------------+-----------------+----------------------------------+---------------------------------------------------------------------------------+---------+
 
 
 +---------------------------------------------------------+
@@ -1216,7 +1216,7 @@ Note: In order to hide this table in the UI and the text report file, please set
 +----------------+--------------+
 ; Partition Name ; Elapsed Time ;
 +----------------+--------------+
-; Top            ; 00:00:08     ;
+; Top            ; 00:00:10     ;
 +----------------+--------------+
 
 
@@ -1226,66 +1226,66 @@ Note: In order to hide this table in the UI and the text report file, please set
 Info: *******************************************************************
 Info: Running Quartus Prime Analysis & Synthesis
     Info: Version 22.1std.1 Build 917 02/14/2023 SC Lite Edition
-    Info: Processing started: Thu Sep 10 22:12:40 2026
+    Info: Processing started: Fri Sep 11 01:30:00 2026
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off week6 -c week6
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
 Info (20030): Parallel compilation is enabled and will use 2 of the 2 processors detected
-Info (12021): Found 2 design units, including 1 entities, in source file /users/peace/documents/docs/de0-risc-v-mcu-main/hw/week3/uart.vhd
-    Info (12022): Found design unit 1: uart-rtl File: C:/Users/Peace/Documents/Docs/DE0-RISC-V-MCU-main/hw/week3/uart.vhd Line: 25
-    Info (12023): Found entity 1: uart File: C:/Users/Peace/Documents/Docs/DE0-RISC-V-MCU-main/hw/week3/uart.vhd Line: 5
-Warning (10335): Unrecognized synthesis attribute "parallel_case" at picorv32.v(331) File: C:/Users/Peace/Documents/Docs/DE0-RISC-V-MCU-main/hw/week6/picorv32.v Line: 331
-Warning (10335): Unrecognized synthesis attribute "full_case" at picorv32.v(402) File: C:/Users/Peace/Documents/Docs/DE0-RISC-V-MCU-main/hw/week6/picorv32.v Line: 402
-Warning (10335): Unrecognized synthesis attribute "parallel_case" at picorv32.v(1119) File: C:/Users/Peace/Documents/Docs/DE0-RISC-V-MCU-main/hw/week6/picorv32.v Line: 1119
-Warning (10335): Unrecognized synthesis attribute "parallel_case" at picorv32.v(1251) File: C:/Users/Peace/Documents/Docs/DE0-RISC-V-MCU-main/hw/week6/picorv32.v Line: 1251
-Warning (10335): Unrecognized synthesis attribute "full_case" at picorv32.v(1251) File: C:/Users/Peace/Documents/Docs/DE0-RISC-V-MCU-main/hw/week6/picorv32.v Line: 1251
-Warning (10335): Unrecognized synthesis attribute "parallel_case" at picorv32.v(1268) File: C:/Users/Peace/Documents/Docs/DE0-RISC-V-MCU-main/hw/week6/picorv32.v Line: 1268
-Warning (10335): Unrecognized synthesis attribute "full_case" at picorv32.v(1268) File: C:/Users/Peace/Documents/Docs/DE0-RISC-V-MCU-main/hw/week6/picorv32.v Line: 1268
-Warning (10335): Unrecognized synthesis attribute "parallel_case" at picorv32.v(1314) File: C:/Users/Peace/Documents/Docs/DE0-RISC-V-MCU-main/hw/week6/picorv32.v Line: 1314
-Warning (10335): Unrecognized synthesis attribute "parallel_case" at picorv32.v(1485) File: C:/Users/Peace/Documents/Docs/DE0-RISC-V-MCU-main/hw/week6/picorv32.v Line: 1485
-Warning (10335): Unrecognized synthesis attribute "full_case" at picorv32.v(1485) File: C:/Users/Peace/Documents/Docs/DE0-RISC-V-MCU-main/hw/week6/picorv32.v Line: 1485
-Warning (10335): Unrecognized synthesis attribute "parallel_case" at picorv32.v(1497) File: C:/Users/Peace/Documents/Docs/DE0-RISC-V-MCU-main/hw/week6/picorv32.v Line: 1497
-Warning (10335): Unrecognized synthesis attribute "parallel_case" at picorv32.v(1583) File: C:/Users/Peace/Documents/Docs/DE0-RISC-V-MCU-main/hw/week6/picorv32.v Line: 1583
-Warning (10335): Unrecognized synthesis attribute "parallel_case" at picorv32.v(1627) File: C:/Users/Peace/Documents/Docs/DE0-RISC-V-MCU-main/hw/week6/picorv32.v Line: 1627
-Warning (10335): Unrecognized synthesis attribute "full_case" at picorv32.v(1627) File: C:/Users/Peace/Documents/Docs/DE0-RISC-V-MCU-main/hw/week6/picorv32.v Line: 1627
-Warning (10335): Unrecognized synthesis attribute "parallel_case" at picorv32.v(1735) File: C:/Users/Peace/Documents/Docs/DE0-RISC-V-MCU-main/hw/week6/picorv32.v Line: 1735
-Warning (10335): Unrecognized synthesis attribute "parallel_case" at picorv32.v(1766) File: C:/Users/Peace/Documents/Docs/DE0-RISC-V-MCU-main/hw/week6/picorv32.v Line: 1766
-Warning (10335): Unrecognized synthesis attribute "parallel_case" at picorv32.v(1836) File: C:/Users/Peace/Documents/Docs/DE0-RISC-V-MCU-main/hw/week6/picorv32.v Line: 1836
-Warning (10335): Unrecognized synthesis attribute "full_case" at picorv32.v(1836) File: C:/Users/Peace/Documents/Docs/DE0-RISC-V-MCU-main/hw/week6/picorv32.v Line: 1836
-Warning (10335): Unrecognized synthesis attribute "parallel_case" at picorv32.v(1844) File: C:/Users/Peace/Documents/Docs/DE0-RISC-V-MCU-main/hw/week6/picorv32.v Line: 1844
-Warning (10335): Unrecognized synthesis attribute "full_case" at picorv32.v(1844) File: C:/Users/Peace/Documents/Docs/DE0-RISC-V-MCU-main/hw/week6/picorv32.v Line: 1844
-Warning (10335): Unrecognized synthesis attribute "parallel_case" at picorv32.v(1859) File: C:/Users/Peace/Documents/Docs/DE0-RISC-V-MCU-main/hw/week6/picorv32.v Line: 1859
-Warning (10335): Unrecognized synthesis attribute "full_case" at picorv32.v(1859) File: C:/Users/Peace/Documents/Docs/DE0-RISC-V-MCU-main/hw/week6/picorv32.v Line: 1859
-Warning (10335): Unrecognized synthesis attribute "parallel_case" at picorv32.v(1884) File: C:/Users/Peace/Documents/Docs/DE0-RISC-V-MCU-main/hw/week6/picorv32.v Line: 1884
-Warning (10335): Unrecognized synthesis attribute "full_case" at picorv32.v(1884) File: C:/Users/Peace/Documents/Docs/DE0-RISC-V-MCU-main/hw/week6/picorv32.v Line: 1884
-Warning (10335): Unrecognized synthesis attribute "parallel_case" at picorv32.v(1901) File: C:/Users/Peace/Documents/Docs/DE0-RISC-V-MCU-main/hw/week6/picorv32.v Line: 1901
-Warning (10335): Unrecognized synthesis attribute "full_case" at picorv32.v(1901) File: C:/Users/Peace/Documents/Docs/DE0-RISC-V-MCU-main/hw/week6/picorv32.v Line: 1901
+Info (12021): Found 2 design units, including 1 entities, in source file /de0-risc-v-mcu/hw/week3/uart.vhd
+    Info (12022): Found design unit 1: uart-rtl File: C:/DE0-RISC-V-MCU/hw/week3/uart.vhd Line: 26
+    Info (12023): Found entity 1: uart File: C:/DE0-RISC-V-MCU/hw/week3/uart.vhd Line: 5
+Warning (10335): Unrecognized synthesis attribute "parallel_case" at picorv32.v(331) File: C:/DE0-RISC-V-MCU/hw/week6/picorv32.v Line: 331
+Warning (10335): Unrecognized synthesis attribute "full_case" at picorv32.v(402) File: C:/DE0-RISC-V-MCU/hw/week6/picorv32.v Line: 402
+Warning (10335): Unrecognized synthesis attribute "parallel_case" at picorv32.v(1119) File: C:/DE0-RISC-V-MCU/hw/week6/picorv32.v Line: 1119
+Warning (10335): Unrecognized synthesis attribute "parallel_case" at picorv32.v(1251) File: C:/DE0-RISC-V-MCU/hw/week6/picorv32.v Line: 1251
+Warning (10335): Unrecognized synthesis attribute "full_case" at picorv32.v(1251) File: C:/DE0-RISC-V-MCU/hw/week6/picorv32.v Line: 1251
+Warning (10335): Unrecognized synthesis attribute "parallel_case" at picorv32.v(1268) File: C:/DE0-RISC-V-MCU/hw/week6/picorv32.v Line: 1268
+Warning (10335): Unrecognized synthesis attribute "full_case" at picorv32.v(1268) File: C:/DE0-RISC-V-MCU/hw/week6/picorv32.v Line: 1268
+Warning (10335): Unrecognized synthesis attribute "parallel_case" at picorv32.v(1314) File: C:/DE0-RISC-V-MCU/hw/week6/picorv32.v Line: 1314
+Warning (10335): Unrecognized synthesis attribute "parallel_case" at picorv32.v(1485) File: C:/DE0-RISC-V-MCU/hw/week6/picorv32.v Line: 1485
+Warning (10335): Unrecognized synthesis attribute "full_case" at picorv32.v(1485) File: C:/DE0-RISC-V-MCU/hw/week6/picorv32.v Line: 1485
+Warning (10335): Unrecognized synthesis attribute "parallel_case" at picorv32.v(1497) File: C:/DE0-RISC-V-MCU/hw/week6/picorv32.v Line: 1497
+Warning (10335): Unrecognized synthesis attribute "parallel_case" at picorv32.v(1583) File: C:/DE0-RISC-V-MCU/hw/week6/picorv32.v Line: 1583
+Warning (10335): Unrecognized synthesis attribute "parallel_case" at picorv32.v(1627) File: C:/DE0-RISC-V-MCU/hw/week6/picorv32.v Line: 1627
+Warning (10335): Unrecognized synthesis attribute "full_case" at picorv32.v(1627) File: C:/DE0-RISC-V-MCU/hw/week6/picorv32.v Line: 1627
+Warning (10335): Unrecognized synthesis attribute "parallel_case" at picorv32.v(1735) File: C:/DE0-RISC-V-MCU/hw/week6/picorv32.v Line: 1735
+Warning (10335): Unrecognized synthesis attribute "parallel_case" at picorv32.v(1766) File: C:/DE0-RISC-V-MCU/hw/week6/picorv32.v Line: 1766
+Warning (10335): Unrecognized synthesis attribute "parallel_case" at picorv32.v(1836) File: C:/DE0-RISC-V-MCU/hw/week6/picorv32.v Line: 1836
+Warning (10335): Unrecognized synthesis attribute "full_case" at picorv32.v(1836) File: C:/DE0-RISC-V-MCU/hw/week6/picorv32.v Line: 1836
+Warning (10335): Unrecognized synthesis attribute "parallel_case" at picorv32.v(1844) File: C:/DE0-RISC-V-MCU/hw/week6/picorv32.v Line: 1844
+Warning (10335): Unrecognized synthesis attribute "full_case" at picorv32.v(1844) File: C:/DE0-RISC-V-MCU/hw/week6/picorv32.v Line: 1844
+Warning (10335): Unrecognized synthesis attribute "parallel_case" at picorv32.v(1859) File: C:/DE0-RISC-V-MCU/hw/week6/picorv32.v Line: 1859
+Warning (10335): Unrecognized synthesis attribute "full_case" at picorv32.v(1859) File: C:/DE0-RISC-V-MCU/hw/week6/picorv32.v Line: 1859
+Warning (10335): Unrecognized synthesis attribute "parallel_case" at picorv32.v(1884) File: C:/DE0-RISC-V-MCU/hw/week6/picorv32.v Line: 1884
+Warning (10335): Unrecognized synthesis attribute "full_case" at picorv32.v(1884) File: C:/DE0-RISC-V-MCU/hw/week6/picorv32.v Line: 1884
+Warning (10335): Unrecognized synthesis attribute "parallel_case" at picorv32.v(1901) File: C:/DE0-RISC-V-MCU/hw/week6/picorv32.v Line: 1901
+Warning (10335): Unrecognized synthesis attribute "full_case" at picorv32.v(1901) File: C:/DE0-RISC-V-MCU/hw/week6/picorv32.v Line: 1901
 Info (12021): Found 8 design units, including 8 entities, in source file picorv32.v
-    Info (12023): Found entity 1: picorv32 File: C:/Users/Peace/Documents/Docs/DE0-RISC-V-MCU-main/hw/week6/picorv32.v Line: 62
-    Info (12023): Found entity 2: picorv32_regs File: C:/Users/Peace/Documents/Docs/DE0-RISC-V-MCU-main/hw/week6/picorv32.v Line: 2174
-    Info (12023): Found entity 3: picorv32_pcpi_mul File: C:/Users/Peace/Documents/Docs/DE0-RISC-V-MCU-main/hw/week6/picorv32.v Line: 2197
-    Info (12023): Found entity 4: picorv32_pcpi_fast_mul File: C:/Users/Peace/Documents/Docs/DE0-RISC-V-MCU-main/hw/week6/picorv32.v Line: 2318
-    Info (12023): Found entity 5: picorv32_pcpi_div File: C:/Users/Peace/Documents/Docs/DE0-RISC-V-MCU-main/hw/week6/picorv32.v Line: 2420
-    Info (12023): Found entity 6: picorv32_axi File: C:/Users/Peace/Documents/Docs/DE0-RISC-V-MCU-main/hw/week6/picorv32.v Line: 2517
-    Info (12023): Found entity 7: picorv32_axi_adapter File: C:/Users/Peace/Documents/Docs/DE0-RISC-V-MCU-main/hw/week6/picorv32.v Line: 2731
-    Info (12023): Found entity 8: picorv32_wb File: C:/Users/Peace/Documents/Docs/DE0-RISC-V-MCU-main/hw/week6/picorv32.v Line: 2815
+    Info (12023): Found entity 1: picorv32 File: C:/DE0-RISC-V-MCU/hw/week6/picorv32.v Line: 62
+    Info (12023): Found entity 2: picorv32_regs File: C:/DE0-RISC-V-MCU/hw/week6/picorv32.v Line: 2174
+    Info (12023): Found entity 3: picorv32_pcpi_mul File: C:/DE0-RISC-V-MCU/hw/week6/picorv32.v Line: 2197
+    Info (12023): Found entity 4: picorv32_pcpi_fast_mul File: C:/DE0-RISC-V-MCU/hw/week6/picorv32.v Line: 2318
+    Info (12023): Found entity 5: picorv32_pcpi_div File: C:/DE0-RISC-V-MCU/hw/week6/picorv32.v Line: 2420
+    Info (12023): Found entity 6: picorv32_axi File: C:/DE0-RISC-V-MCU/hw/week6/picorv32.v Line: 2517
+    Info (12023): Found entity 7: picorv32_axi_adapter File: C:/DE0-RISC-V-MCU/hw/week6/picorv32.v Line: 2731
+    Info (12023): Found entity 8: picorv32_wb File: C:/DE0-RISC-V-MCU/hw/week6/picorv32.v Line: 2815
 Info (12021): Found 2 design units, including 1 entities, in source file ram_16kb.vhd
-    Info (12022): Found design unit 1: ram_16kb-rtl File: C:/Users/Peace/Documents/Docs/DE0-RISC-V-MCU-main/hw/week6/ram_16kb.vhd Line: 22
-    Info (12023): Found entity 1: ram_16kb File: C:/Users/Peace/Documents/Docs/DE0-RISC-V-MCU-main/hw/week6/ram_16kb.vhd Line: 11
+    Info (12022): Found design unit 1: ram_16kb-rtl File: C:/DE0-RISC-V-MCU/hw/week6/ram_16kb.vhd Line: 22
+    Info (12023): Found entity 1: ram_16kb File: C:/DE0-RISC-V-MCU/hw/week6/ram_16kb.vhd Line: 11
 Info (12021): Found 2 design units, including 1 entities, in source file bootloader.vhd
-    Info (12022): Found design unit 1: bootloader-rtl File: C:/Users/Peace/Documents/Docs/DE0-RISC-V-MCU-main/hw/week6/bootloader.vhd Line: 32
-    Info (12023): Found entity 1: bootloader File: C:/Users/Peace/Documents/Docs/DE0-RISC-V-MCU-main/hw/week6/bootloader.vhd Line: 11
+    Info (12022): Found design unit 1: bootloader-rtl File: C:/DE0-RISC-V-MCU/hw/week6/bootloader.vhd Line: 32
+    Info (12023): Found entity 1: bootloader File: C:/DE0-RISC-V-MCU/hw/week6/bootloader.vhd Line: 11
 Info (12021): Found 2 design units, including 1 entities, in source file soc_boot_top.vhd
-    Info (12022): Found design unit 1: soc_boot_top-rtl File: C:/Users/Peace/Documents/Docs/DE0-RISC-V-MCU-main/hw/week6/soc_boot_top.vhd Line: 25
-    Info (12023): Found entity 1: soc_boot_top File: C:/Users/Peace/Documents/Docs/DE0-RISC-V-MCU-main/hw/week6/soc_boot_top.vhd Line: 12
+    Info (12022): Found design unit 1: soc_boot_top-rtl File: C:/DE0-RISC-V-MCU/hw/week6/soc_boot_top.vhd Line: 25
+    Info (12023): Found entity 1: soc_boot_top File: C:/DE0-RISC-V-MCU/hw/week6/soc_boot_top.vhd Line: 12
 Info (12127): Elaborating entity "soc_boot_top" for the top level hierarchy
-Warning (10036): Verilog HDL or VHDL warning at soc_boot_top.vhd(119): object "cpu_mem_instr" assigned a value but never read File: C:/Users/Peace/Documents/Docs/DE0-RISC-V-MCU-main/hw/week6/soc_boot_top.vhd Line: 119
-Warning (10036): Verilog HDL or VHDL warning at soc_boot_top.vhd(125): object "cpu_trap" assigned a value but never read File: C:/Users/Peace/Documents/Docs/DE0-RISC-V-MCU-main/hw/week6/soc_boot_top.vhd Line: 125
-Info (12128): Elaborating entity "uart" for hierarchy "uart:u_uart" File: C:/Users/Peace/Documents/Docs/DE0-RISC-V-MCU-main/hw/week6/soc_boot_top.vhd Line: 167
-Info (12128): Elaborating entity "bootloader" for hierarchy "bootloader:u_boot" File: C:/Users/Peace/Documents/Docs/DE0-RISC-V-MCU-main/hw/week6/soc_boot_top.vhd Line: 190
-Info (12128): Elaborating entity "ram_16kb" for hierarchy "ram_16kb:u_ram" File: C:/Users/Peace/Documents/Docs/DE0-RISC-V-MCU-main/hw/week6/soc_boot_top.vhd Line: 220
-Info (12128): Elaborating entity "altsyncram" for hierarchy "ram_16kb:u_ram|altsyncram:ram_byte0" File: C:/Users/Peace/Documents/Docs/DE0-RISC-V-MCU-main/hw/week6/ram_16kb.vhd Line: 44
-Info (12130): Elaborated megafunction instantiation "ram_16kb:u_ram|altsyncram:ram_byte0" File: C:/Users/Peace/Documents/Docs/DE0-RISC-V-MCU-main/hw/week6/ram_16kb.vhd Line: 44
-Info (12133): Instantiated megafunction "ram_16kb:u_ram|altsyncram:ram_byte0" with the following parameter: File: C:/Users/Peace/Documents/Docs/DE0-RISC-V-MCU-main/hw/week6/ram_16kb.vhd Line: 44
+Warning (10036): Verilog HDL or VHDL warning at soc_boot_top.vhd(119): object "cpu_mem_instr" assigned a value but never read File: C:/DE0-RISC-V-MCU/hw/week6/soc_boot_top.vhd Line: 119
+Warning (10036): Verilog HDL or VHDL warning at soc_boot_top.vhd(125): object "cpu_trap" assigned a value but never read File: C:/DE0-RISC-V-MCU/hw/week6/soc_boot_top.vhd Line: 125
+Info (12128): Elaborating entity "uart" for hierarchy "uart:u_uart" File: C:/DE0-RISC-V-MCU/hw/week6/soc_boot_top.vhd Line: 167
+Info (12128): Elaborating entity "bootloader" for hierarchy "bootloader:u_boot" File: C:/DE0-RISC-V-MCU/hw/week6/soc_boot_top.vhd Line: 190
+Info (12128): Elaborating entity "ram_16kb" for hierarchy "ram_16kb:u_ram" File: C:/DE0-RISC-V-MCU/hw/week6/soc_boot_top.vhd Line: 220
+Info (12128): Elaborating entity "altsyncram" for hierarchy "ram_16kb:u_ram|altsyncram:ram_byte0" File: C:/DE0-RISC-V-MCU/hw/week6/ram_16kb.vhd Line: 44
+Info (12130): Elaborated megafunction instantiation "ram_16kb:u_ram|altsyncram:ram_byte0" File: C:/DE0-RISC-V-MCU/hw/week6/ram_16kb.vhd Line: 44
+Info (12133): Instantiated megafunction "ram_16kb:u_ram|altsyncram:ram_byte0" with the following parameter: File: C:/DE0-RISC-V-MCU/hw/week6/ram_16kb.vhd Line: 44
     Info (12134): Parameter "address_aclr_a" = "UNUSED"
     Info (12134): Parameter "address_aclr_b" = "NONE"
     Info (12134): Parameter "address_reg_b" = "CLOCK1"
@@ -1337,11 +1337,11 @@ Info (12133): Instantiated megafunction "ram_16kb:u_ram|altsyncram:ram_byte0" wi
     Info (12134): Parameter "lpm_hint" = "UNUSED"
     Info (12134): Parameter "lpm_type" = "altsyncram"
 Info (12021): Found 1 design units, including 1 entities, in source file db/altsyncram_94q3.tdf
-    Info (12023): Found entity 1: altsyncram_94q3 File: C:/Users/Peace/Documents/Docs/DE0-RISC-V-MCU-main/hw/week6/db/altsyncram_94q3.tdf Line: 28
+    Info (12023): Found entity 1: altsyncram_94q3 File: C:/DE0-RISC-V-MCU/hw/week6/db/altsyncram_94q3.tdf Line: 28
 Info (12128): Elaborating entity "altsyncram_94q3" for hierarchy "ram_16kb:u_ram|altsyncram:ram_byte0|altsyncram_94q3:auto_generated" File: e:/intelfpga_lite/22.1std/quartus/libraries/megafunctions/altsyncram.tdf Line: 792
-Info (12128): Elaborating entity "altsyncram" for hierarchy "ram_16kb:u_ram|altsyncram:ram_byte1" File: C:/Users/Peace/Documents/Docs/DE0-RISC-V-MCU-main/hw/week6/ram_16kb.vhd Line: 67
-Info (12130): Elaborated megafunction instantiation "ram_16kb:u_ram|altsyncram:ram_byte1" File: C:/Users/Peace/Documents/Docs/DE0-RISC-V-MCU-main/hw/week6/ram_16kb.vhd Line: 67
-Info (12133): Instantiated megafunction "ram_16kb:u_ram|altsyncram:ram_byte1" with the following parameter: File: C:/Users/Peace/Documents/Docs/DE0-RISC-V-MCU-main/hw/week6/ram_16kb.vhd Line: 67
+Info (12128): Elaborating entity "altsyncram" for hierarchy "ram_16kb:u_ram|altsyncram:ram_byte1" File: C:/DE0-RISC-V-MCU/hw/week6/ram_16kb.vhd Line: 67
+Info (12130): Elaborated megafunction instantiation "ram_16kb:u_ram|altsyncram:ram_byte1" File: C:/DE0-RISC-V-MCU/hw/week6/ram_16kb.vhd Line: 67
+Info (12133): Instantiated megafunction "ram_16kb:u_ram|altsyncram:ram_byte1" with the following parameter: File: C:/DE0-RISC-V-MCU/hw/week6/ram_16kb.vhd Line: 67
     Info (12134): Parameter "address_aclr_a" = "UNUSED"
     Info (12134): Parameter "address_aclr_b" = "NONE"
     Info (12134): Parameter "address_reg_b" = "CLOCK1"
@@ -1393,11 +1393,11 @@ Info (12133): Instantiated megafunction "ram_16kb:u_ram|altsyncram:ram_byte1" wi
     Info (12134): Parameter "lpm_hint" = "UNUSED"
     Info (12134): Parameter "lpm_type" = "altsyncram"
 Info (12021): Found 1 design units, including 1 entities, in source file db/altsyncram_a4q3.tdf
-    Info (12023): Found entity 1: altsyncram_a4q3 File: C:/Users/Peace/Documents/Docs/DE0-RISC-V-MCU-main/hw/week6/db/altsyncram_a4q3.tdf Line: 28
+    Info (12023): Found entity 1: altsyncram_a4q3 File: C:/DE0-RISC-V-MCU/hw/week6/db/altsyncram_a4q3.tdf Line: 28
 Info (12128): Elaborating entity "altsyncram_a4q3" for hierarchy "ram_16kb:u_ram|altsyncram:ram_byte1|altsyncram_a4q3:auto_generated" File: e:/intelfpga_lite/22.1std/quartus/libraries/megafunctions/altsyncram.tdf Line: 792
-Info (12128): Elaborating entity "altsyncram" for hierarchy "ram_16kb:u_ram|altsyncram:ram_byte2" File: C:/Users/Peace/Documents/Docs/DE0-RISC-V-MCU-main/hw/week6/ram_16kb.vhd Line: 90
-Info (12130): Elaborated megafunction instantiation "ram_16kb:u_ram|altsyncram:ram_byte2" File: C:/Users/Peace/Documents/Docs/DE0-RISC-V-MCU-main/hw/week6/ram_16kb.vhd Line: 90
-Info (12133): Instantiated megafunction "ram_16kb:u_ram|altsyncram:ram_byte2" with the following parameter: File: C:/Users/Peace/Documents/Docs/DE0-RISC-V-MCU-main/hw/week6/ram_16kb.vhd Line: 90
+Info (12128): Elaborating entity "altsyncram" for hierarchy "ram_16kb:u_ram|altsyncram:ram_byte2" File: C:/DE0-RISC-V-MCU/hw/week6/ram_16kb.vhd Line: 90
+Info (12130): Elaborated megafunction instantiation "ram_16kb:u_ram|altsyncram:ram_byte2" File: C:/DE0-RISC-V-MCU/hw/week6/ram_16kb.vhd Line: 90
+Info (12133): Instantiated megafunction "ram_16kb:u_ram|altsyncram:ram_byte2" with the following parameter: File: C:/DE0-RISC-V-MCU/hw/week6/ram_16kb.vhd Line: 90
     Info (12134): Parameter "address_aclr_a" = "UNUSED"
     Info (12134): Parameter "address_aclr_b" = "NONE"
     Info (12134): Parameter "address_reg_b" = "CLOCK1"
@@ -1449,11 +1449,11 @@ Info (12133): Instantiated megafunction "ram_16kb:u_ram|altsyncram:ram_byte2" wi
     Info (12134): Parameter "lpm_hint" = "UNUSED"
     Info (12134): Parameter "lpm_type" = "altsyncram"
 Info (12021): Found 1 design units, including 1 entities, in source file db/altsyncram_b4q3.tdf
-    Info (12023): Found entity 1: altsyncram_b4q3 File: C:/Users/Peace/Documents/Docs/DE0-RISC-V-MCU-main/hw/week6/db/altsyncram_b4q3.tdf Line: 28
+    Info (12023): Found entity 1: altsyncram_b4q3 File: C:/DE0-RISC-V-MCU/hw/week6/db/altsyncram_b4q3.tdf Line: 28
 Info (12128): Elaborating entity "altsyncram_b4q3" for hierarchy "ram_16kb:u_ram|altsyncram:ram_byte2|altsyncram_b4q3:auto_generated" File: e:/intelfpga_lite/22.1std/quartus/libraries/megafunctions/altsyncram.tdf Line: 792
-Info (12128): Elaborating entity "altsyncram" for hierarchy "ram_16kb:u_ram|altsyncram:ram_byte3" File: C:/Users/Peace/Documents/Docs/DE0-RISC-V-MCU-main/hw/week6/ram_16kb.vhd Line: 113
-Info (12130): Elaborated megafunction instantiation "ram_16kb:u_ram|altsyncram:ram_byte3" File: C:/Users/Peace/Documents/Docs/DE0-RISC-V-MCU-main/hw/week6/ram_16kb.vhd Line: 113
-Info (12133): Instantiated megafunction "ram_16kb:u_ram|altsyncram:ram_byte3" with the following parameter: File: C:/Users/Peace/Documents/Docs/DE0-RISC-V-MCU-main/hw/week6/ram_16kb.vhd Line: 113
+Info (12128): Elaborating entity "altsyncram" for hierarchy "ram_16kb:u_ram|altsyncram:ram_byte3" File: C:/DE0-RISC-V-MCU/hw/week6/ram_16kb.vhd Line: 113
+Info (12130): Elaborated megafunction instantiation "ram_16kb:u_ram|altsyncram:ram_byte3" File: C:/DE0-RISC-V-MCU/hw/week6/ram_16kb.vhd Line: 113
+Info (12133): Instantiated megafunction "ram_16kb:u_ram|altsyncram:ram_byte3" with the following parameter: File: C:/DE0-RISC-V-MCU/hw/week6/ram_16kb.vhd Line: 113
     Info (12134): Parameter "address_aclr_a" = "UNUSED"
     Info (12134): Parameter "address_aclr_b" = "NONE"
     Info (12134): Parameter "address_reg_b" = "CLOCK1"
@@ -1505,52 +1505,52 @@ Info (12133): Instantiated megafunction "ram_16kb:u_ram|altsyncram:ram_byte3" wi
     Info (12134): Parameter "lpm_hint" = "UNUSED"
     Info (12134): Parameter "lpm_type" = "altsyncram"
 Info (12021): Found 1 design units, including 1 entities, in source file db/altsyncram_c4q3.tdf
-    Info (12023): Found entity 1: altsyncram_c4q3 File: C:/Users/Peace/Documents/Docs/DE0-RISC-V-MCU-main/hw/week6/db/altsyncram_c4q3.tdf Line: 28
+    Info (12023): Found entity 1: altsyncram_c4q3 File: C:/DE0-RISC-V-MCU/hw/week6/db/altsyncram_c4q3.tdf Line: 28
 Info (12128): Elaborating entity "altsyncram_c4q3" for hierarchy "ram_16kb:u_ram|altsyncram:ram_byte3|altsyncram_c4q3:auto_generated" File: e:/intelfpga_lite/22.1std/quartus/libraries/megafunctions/altsyncram.tdf Line: 792
-Info (12128): Elaborating entity "picorv32" for hierarchy "picorv32:u_cpu" File: C:/Users/Peace/Documents/Docs/DE0-RISC-V-MCU-main/hw/week6/soc_boot_top.vhd Line: 272
-Warning (10036): Verilog HDL or VHDL warning at picorv32.v(181): object "dbg_insn_addr" assigned a value but never read File: C:/Users/Peace/Documents/Docs/DE0-RISC-V-MCU-main/hw/week6/picorv32.v Line: 181
-Warning (10036): Verilog HDL or VHDL warning at picorv32.v(183): object "dbg_mem_valid" assigned a value but never read File: C:/Users/Peace/Documents/Docs/DE0-RISC-V-MCU-main/hw/week6/picorv32.v Line: 183
-Warning (10036): Verilog HDL or VHDL warning at picorv32.v(184): object "dbg_mem_instr" assigned a value but never read File: C:/Users/Peace/Documents/Docs/DE0-RISC-V-MCU-main/hw/week6/picorv32.v Line: 184
-Warning (10036): Verilog HDL or VHDL warning at picorv32.v(185): object "dbg_mem_ready" assigned a value but never read File: C:/Users/Peace/Documents/Docs/DE0-RISC-V-MCU-main/hw/week6/picorv32.v Line: 185
-Warning (10036): Verilog HDL or VHDL warning at picorv32.v(186): object "dbg_mem_addr" assigned a value but never read File: C:/Users/Peace/Documents/Docs/DE0-RISC-V-MCU-main/hw/week6/picorv32.v Line: 186
-Warning (10036): Verilog HDL or VHDL warning at picorv32.v(187): object "dbg_mem_wdata" assigned a value but never read File: C:/Users/Peace/Documents/Docs/DE0-RISC-V-MCU-main/hw/week6/picorv32.v Line: 187
-Warning (10036): Verilog HDL or VHDL warning at picorv32.v(188): object "dbg_mem_wstrb" assigned a value but never read File: C:/Users/Peace/Documents/Docs/DE0-RISC-V-MCU-main/hw/week6/picorv32.v Line: 188
-Warning (10036): Verilog HDL or VHDL warning at picorv32.v(189): object "dbg_mem_rdata" assigned a value but never read File: C:/Users/Peace/Documents/Docs/DE0-RISC-V-MCU-main/hw/week6/picorv32.v Line: 189
-Warning (10036): Verilog HDL or VHDL warning at picorv32.v(375): object "mem_busy" assigned a value but never read File: C:/Users/Peace/Documents/Docs/DE0-RISC-V-MCU-main/hw/week6/picorv32.v Line: 375
-Warning (10036): Verilog HDL or VHDL warning at picorv32.v(696): object "dbg_rs1val" assigned a value but never read File: C:/Users/Peace/Documents/Docs/DE0-RISC-V-MCU-main/hw/week6/picorv32.v Line: 696
-Warning (10036): Verilog HDL or VHDL warning at picorv32.v(697): object "dbg_rs2val" assigned a value but never read File: C:/Users/Peace/Documents/Docs/DE0-RISC-V-MCU-main/hw/week6/picorv32.v Line: 697
-Warning (10036): Verilog HDL or VHDL warning at picorv32.v(698): object "dbg_rs1val_valid" assigned a value but never read File: C:/Users/Peace/Documents/Docs/DE0-RISC-V-MCU-main/hw/week6/picorv32.v Line: 698
-Warning (10036): Verilog HDL or VHDL warning at picorv32.v(699): object "dbg_rs2val_valid" assigned a value but never read File: C:/Users/Peace/Documents/Docs/DE0-RISC-V-MCU-main/hw/week6/picorv32.v Line: 699
-Warning (10036): Verilog HDL or VHDL warning at picorv32.v(769): object "dbg_valid_insn" assigned a value but never read File: C:/Users/Peace/Documents/Docs/DE0-RISC-V-MCU-main/hw/week6/picorv32.v Line: 769
-Warning (10036): Verilog HDL or VHDL warning at picorv32.v(1184): object "dbg_ascii_state" assigned a value but never read File: C:/Users/Peace/Documents/Docs/DE0-RISC-V-MCU-main/hw/week6/picorv32.v Line: 1184
-Warning (10270): Verilog HDL Case Statement warning at picorv32.v(332): incomplete case statement has no default case item File: C:/Users/Peace/Documents/Docs/DE0-RISC-V-MCU-main/hw/week6/picorv32.v Line: 332
-Warning (10230): Verilog HDL assignment warning at picorv32.v(617): truncated value with size 32 to match size of target (2) File: C:/Users/Peace/Documents/Docs/DE0-RISC-V-MCU-main/hw/week6/picorv32.v Line: 617
-Warning (10230): Verilog HDL assignment warning at picorv32.v(1245): truncated value with size 33 to match size of target (32) File: C:/Users/Peace/Documents/Docs/DE0-RISC-V-MCU-main/hw/week6/picorv32.v Line: 1245
-Warning (10230): Verilog HDL assignment warning at picorv32.v(1250): truncated value with size 32 to match size of target (1) File: C:/Users/Peace/Documents/Docs/DE0-RISC-V-MCU-main/hw/week6/picorv32.v Line: 1250
-Warning (10763): Verilog HDL warning at picorv32.v(1252): case statement has overlapping case item expressions with non-constant or don't care bits - unable to check case statement for completeness File: C:/Users/Peace/Documents/Docs/DE0-RISC-V-MCU-main/hw/week6/picorv32.v Line: 1252
-Warning (10208): Verilog HDL Case Statement warning at picorv32.v(1252): honored full_case synthesis attribute - differences between design synthesis and simulation may occur File: C:/Users/Peace/Documents/Docs/DE0-RISC-V-MCU-main/hw/week6/picorv32.v Line: 1252
-Warning (10763): Verilog HDL warning at picorv32.v(1269): case statement has overlapping case item expressions with non-constant or don't care bits - unable to check case statement for completeness File: C:/Users/Peace/Documents/Docs/DE0-RISC-V-MCU-main/hw/week6/picorv32.v Line: 1269
-Warning (10208): Verilog HDL Case Statement warning at picorv32.v(1269): honored full_case synthesis attribute - differences between design synthesis and simulation may occur File: C:/Users/Peace/Documents/Docs/DE0-RISC-V-MCU-main/hw/week6/picorv32.v Line: 1269
-Warning (10763): Verilog HDL warning at picorv32.v(1315): case statement has overlapping case item expressions with non-constant or don't care bits - unable to check case statement for completeness File: C:/Users/Peace/Documents/Docs/DE0-RISC-V-MCU-main/hw/week6/picorv32.v Line: 1315
-Warning (10270): Verilog HDL Case Statement warning at picorv32.v(1315): incomplete case statement has no default case item File: C:/Users/Peace/Documents/Docs/DE0-RISC-V-MCU-main/hw/week6/picorv32.v Line: 1315
-Warning (10230): Verilog HDL assignment warning at picorv32.v(1349): truncated value with size 32 to match size of target (5) File: C:/Users/Peace/Documents/Docs/DE0-RISC-V-MCU-main/hw/week6/picorv32.v Line: 1349
-Warning (10230): Verilog HDL assignment warning at picorv32.v(1404): truncated value with size 32 to match size of target (5) File: C:/Users/Peace/Documents/Docs/DE0-RISC-V-MCU-main/hw/week6/picorv32.v Line: 1404
-Warning (10763): Verilog HDL warning at picorv32.v(1498): case statement has overlapping case item expressions with non-constant or don't care bits - unable to check case statement for completeness File: C:/Users/Peace/Documents/Docs/DE0-RISC-V-MCU-main/hw/week6/picorv32.v Line: 1498
-Warning (10230): Verilog HDL assignment warning at picorv32.v(1731): truncated value with size 32 to match size of target (5) File: C:/Users/Peace/Documents/Docs/DE0-RISC-V-MCU-main/hw/week6/picorv32.v Line: 1731
-Warning (10230): Verilog HDL assignment warning at picorv32.v(1761): truncated value with size 32 to match size of target (5) File: C:/Users/Peace/Documents/Docs/DE0-RISC-V-MCU-main/hw/week6/picorv32.v Line: 1761
-Warning (10763): Verilog HDL warning at picorv32.v(1837): case statement has overlapping case item expressions with non-constant or don't care bits - unable to check case statement for completeness File: C:/Users/Peace/Documents/Docs/DE0-RISC-V-MCU-main/hw/week6/picorv32.v Line: 1837
-Warning (10208): Verilog HDL Case Statement warning at picorv32.v(1837): honored full_case synthesis attribute - differences between design synthesis and simulation may occur File: C:/Users/Peace/Documents/Docs/DE0-RISC-V-MCU-main/hw/week6/picorv32.v Line: 1837
-Warning (10230): Verilog HDL assignment warning at picorv32.v(1842): truncated value with size 32 to match size of target (5) File: C:/Users/Peace/Documents/Docs/DE0-RISC-V-MCU-main/hw/week6/picorv32.v Line: 1842
-Warning (10763): Verilog HDL warning at picorv32.v(1845): case statement has overlapping case item expressions with non-constant or don't care bits - unable to check case statement for completeness File: C:/Users/Peace/Documents/Docs/DE0-RISC-V-MCU-main/hw/week6/picorv32.v Line: 1845
-Warning (10208): Verilog HDL Case Statement warning at picorv32.v(1845): honored full_case synthesis attribute - differences between design synthesis and simulation may occur File: C:/Users/Peace/Documents/Docs/DE0-RISC-V-MCU-main/hw/week6/picorv32.v Line: 1845
-Warning (10230): Verilog HDL assignment warning at picorv32.v(1850): truncated value with size 32 to match size of target (5) File: C:/Users/Peace/Documents/Docs/DE0-RISC-V-MCU-main/hw/week6/picorv32.v Line: 1850
-Warning (10763): Verilog HDL warning at picorv32.v(1860): case statement has overlapping case item expressions with non-constant or don't care bits - unable to check case statement for completeness File: C:/Users/Peace/Documents/Docs/DE0-RISC-V-MCU-main/hw/week6/picorv32.v Line: 1860
-Warning (10208): Verilog HDL Case Statement warning at picorv32.v(1860): honored full_case synthesis attribute - differences between design synthesis and simulation may occur File: C:/Users/Peace/Documents/Docs/DE0-RISC-V-MCU-main/hw/week6/picorv32.v Line: 1860
-Warning (10763): Verilog HDL warning at picorv32.v(1885): case statement has overlapping case item expressions with non-constant or don't care bits - unable to check case statement for completeness File: C:/Users/Peace/Documents/Docs/DE0-RISC-V-MCU-main/hw/week6/picorv32.v Line: 1885
-Warning (10208): Verilog HDL Case Statement warning at picorv32.v(1885): honored full_case synthesis attribute - differences between design synthesis and simulation may occur File: C:/Users/Peace/Documents/Docs/DE0-RISC-V-MCU-main/hw/week6/picorv32.v Line: 1885
-Warning (10763): Verilog HDL warning at picorv32.v(1902): case statement has overlapping case item expressions with non-constant or don't care bits - unable to check case statement for completeness File: C:/Users/Peace/Documents/Docs/DE0-RISC-V-MCU-main/hw/week6/picorv32.v Line: 1902
-Warning (10208): Verilog HDL Case Statement warning at picorv32.v(1902): honored full_case synthesis attribute - differences between design synthesis and simulation may occur File: C:/Users/Peace/Documents/Docs/DE0-RISC-V-MCU-main/hw/week6/picorv32.v Line: 1902
-Warning (10034): Output port "pcpi_insn" at picorv32.v(111) has no driver File: C:/Users/Peace/Documents/Docs/DE0-RISC-V-MCU-main/hw/week6/picorv32.v Line: 111
+Info (12128): Elaborating entity "picorv32" for hierarchy "picorv32:u_cpu" File: C:/DE0-RISC-V-MCU/hw/week6/soc_boot_top.vhd Line: 272
+Warning (10036): Verilog HDL or VHDL warning at picorv32.v(181): object "dbg_insn_addr" assigned a value but never read File: C:/DE0-RISC-V-MCU/hw/week6/picorv32.v Line: 181
+Warning (10036): Verilog HDL or VHDL warning at picorv32.v(183): object "dbg_mem_valid" assigned a value but never read File: C:/DE0-RISC-V-MCU/hw/week6/picorv32.v Line: 183
+Warning (10036): Verilog HDL or VHDL warning at picorv32.v(184): object "dbg_mem_instr" assigned a value but never read File: C:/DE0-RISC-V-MCU/hw/week6/picorv32.v Line: 184
+Warning (10036): Verilog HDL or VHDL warning at picorv32.v(185): object "dbg_mem_ready" assigned a value but never read File: C:/DE0-RISC-V-MCU/hw/week6/picorv32.v Line: 185
+Warning (10036): Verilog HDL or VHDL warning at picorv32.v(186): object "dbg_mem_addr" assigned a value but never read File: C:/DE0-RISC-V-MCU/hw/week6/picorv32.v Line: 186
+Warning (10036): Verilog HDL or VHDL warning at picorv32.v(187): object "dbg_mem_wdata" assigned a value but never read File: C:/DE0-RISC-V-MCU/hw/week6/picorv32.v Line: 187
+Warning (10036): Verilog HDL or VHDL warning at picorv32.v(188): object "dbg_mem_wstrb" assigned a value but never read File: C:/DE0-RISC-V-MCU/hw/week6/picorv32.v Line: 188
+Warning (10036): Verilog HDL or VHDL warning at picorv32.v(189): object "dbg_mem_rdata" assigned a value but never read File: C:/DE0-RISC-V-MCU/hw/week6/picorv32.v Line: 189
+Warning (10036): Verilog HDL or VHDL warning at picorv32.v(375): object "mem_busy" assigned a value but never read File: C:/DE0-RISC-V-MCU/hw/week6/picorv32.v Line: 375
+Warning (10036): Verilog HDL or VHDL warning at picorv32.v(696): object "dbg_rs1val" assigned a value but never read File: C:/DE0-RISC-V-MCU/hw/week6/picorv32.v Line: 696
+Warning (10036): Verilog HDL or VHDL warning at picorv32.v(697): object "dbg_rs2val" assigned a value but never read File: C:/DE0-RISC-V-MCU/hw/week6/picorv32.v Line: 697
+Warning (10036): Verilog HDL or VHDL warning at picorv32.v(698): object "dbg_rs1val_valid" assigned a value but never read File: C:/DE0-RISC-V-MCU/hw/week6/picorv32.v Line: 698
+Warning (10036): Verilog HDL or VHDL warning at picorv32.v(699): object "dbg_rs2val_valid" assigned a value but never read File: C:/DE0-RISC-V-MCU/hw/week6/picorv32.v Line: 699
+Warning (10036): Verilog HDL or VHDL warning at picorv32.v(769): object "dbg_valid_insn" assigned a value but never read File: C:/DE0-RISC-V-MCU/hw/week6/picorv32.v Line: 769
+Warning (10036): Verilog HDL or VHDL warning at picorv32.v(1184): object "dbg_ascii_state" assigned a value but never read File: C:/DE0-RISC-V-MCU/hw/week6/picorv32.v Line: 1184
+Warning (10270): Verilog HDL Case Statement warning at picorv32.v(332): incomplete case statement has no default case item File: C:/DE0-RISC-V-MCU/hw/week6/picorv32.v Line: 332
+Warning (10230): Verilog HDL assignment warning at picorv32.v(617): truncated value with size 32 to match size of target (2) File: C:/DE0-RISC-V-MCU/hw/week6/picorv32.v Line: 617
+Warning (10230): Verilog HDL assignment warning at picorv32.v(1245): truncated value with size 33 to match size of target (32) File: C:/DE0-RISC-V-MCU/hw/week6/picorv32.v Line: 1245
+Warning (10230): Verilog HDL assignment warning at picorv32.v(1250): truncated value with size 32 to match size of target (1) File: C:/DE0-RISC-V-MCU/hw/week6/picorv32.v Line: 1250
+Warning (10763): Verilog HDL warning at picorv32.v(1252): case statement has overlapping case item expressions with non-constant or don't care bits - unable to check case statement for completeness File: C:/DE0-RISC-V-MCU/hw/week6/picorv32.v Line: 1252
+Warning (10208): Verilog HDL Case Statement warning at picorv32.v(1252): honored full_case synthesis attribute - differences between design synthesis and simulation may occur File: C:/DE0-RISC-V-MCU/hw/week6/picorv32.v Line: 1252
+Warning (10763): Verilog HDL warning at picorv32.v(1269): case statement has overlapping case item expressions with non-constant or don't care bits - unable to check case statement for completeness File: C:/DE0-RISC-V-MCU/hw/week6/picorv32.v Line: 1269
+Warning (10208): Verilog HDL Case Statement warning at picorv32.v(1269): honored full_case synthesis attribute - differences between design synthesis and simulation may occur File: C:/DE0-RISC-V-MCU/hw/week6/picorv32.v Line: 1269
+Warning (10763): Verilog HDL warning at picorv32.v(1315): case statement has overlapping case item expressions with non-constant or don't care bits - unable to check case statement for completeness File: C:/DE0-RISC-V-MCU/hw/week6/picorv32.v Line: 1315
+Warning (10270): Verilog HDL Case Statement warning at picorv32.v(1315): incomplete case statement has no default case item File: C:/DE0-RISC-V-MCU/hw/week6/picorv32.v Line: 1315
+Warning (10230): Verilog HDL assignment warning at picorv32.v(1349): truncated value with size 32 to match size of target (5) File: C:/DE0-RISC-V-MCU/hw/week6/picorv32.v Line: 1349
+Warning (10230): Verilog HDL assignment warning at picorv32.v(1404): truncated value with size 32 to match size of target (5) File: C:/DE0-RISC-V-MCU/hw/week6/picorv32.v Line: 1404
+Warning (10763): Verilog HDL warning at picorv32.v(1498): case statement has overlapping case item expressions with non-constant or don't care bits - unable to check case statement for completeness File: C:/DE0-RISC-V-MCU/hw/week6/picorv32.v Line: 1498
+Warning (10230): Verilog HDL assignment warning at picorv32.v(1731): truncated value with size 32 to match size of target (5) File: C:/DE0-RISC-V-MCU/hw/week6/picorv32.v Line: 1731
+Warning (10230): Verilog HDL assignment warning at picorv32.v(1761): truncated value with size 32 to match size of target (5) File: C:/DE0-RISC-V-MCU/hw/week6/picorv32.v Line: 1761
+Warning (10763): Verilog HDL warning at picorv32.v(1837): case statement has overlapping case item expressions with non-constant or don't care bits - unable to check case statement for completeness File: C:/DE0-RISC-V-MCU/hw/week6/picorv32.v Line: 1837
+Warning (10208): Verilog HDL Case Statement warning at picorv32.v(1837): honored full_case synthesis attribute - differences between design synthesis and simulation may occur File: C:/DE0-RISC-V-MCU/hw/week6/picorv32.v Line: 1837
+Warning (10230): Verilog HDL assignment warning at picorv32.v(1842): truncated value with size 32 to match size of target (5) File: C:/DE0-RISC-V-MCU/hw/week6/picorv32.v Line: 1842
+Warning (10763): Verilog HDL warning at picorv32.v(1845): case statement has overlapping case item expressions with non-constant or don't care bits - unable to check case statement for completeness File: C:/DE0-RISC-V-MCU/hw/week6/picorv32.v Line: 1845
+Warning (10208): Verilog HDL Case Statement warning at picorv32.v(1845): honored full_case synthesis attribute - differences between design synthesis and simulation may occur File: C:/DE0-RISC-V-MCU/hw/week6/picorv32.v Line: 1845
+Warning (10230): Verilog HDL assignment warning at picorv32.v(1850): truncated value with size 32 to match size of target (5) File: C:/DE0-RISC-V-MCU/hw/week6/picorv32.v Line: 1850
+Warning (10763): Verilog HDL warning at picorv32.v(1860): case statement has overlapping case item expressions with non-constant or don't care bits - unable to check case statement for completeness File: C:/DE0-RISC-V-MCU/hw/week6/picorv32.v Line: 1860
+Warning (10208): Verilog HDL Case Statement warning at picorv32.v(1860): honored full_case synthesis attribute - differences between design synthesis and simulation may occur File: C:/DE0-RISC-V-MCU/hw/week6/picorv32.v Line: 1860
+Warning (10763): Verilog HDL warning at picorv32.v(1885): case statement has overlapping case item expressions with non-constant or don't care bits - unable to check case statement for completeness File: C:/DE0-RISC-V-MCU/hw/week6/picorv32.v Line: 1885
+Warning (10208): Verilog HDL Case Statement warning at picorv32.v(1885): honored full_case synthesis attribute - differences between design synthesis and simulation may occur File: C:/DE0-RISC-V-MCU/hw/week6/picorv32.v Line: 1885
+Warning (10763): Verilog HDL warning at picorv32.v(1902): case statement has overlapping case item expressions with non-constant or don't care bits - unable to check case statement for completeness File: C:/DE0-RISC-V-MCU/hw/week6/picorv32.v Line: 1902
+Warning (10208): Verilog HDL Case Statement warning at picorv32.v(1902): honored full_case synthesis attribute - differences between design synthesis and simulation may occur File: C:/DE0-RISC-V-MCU/hw/week6/picorv32.v Line: 1902
+Warning (10034): Output port "pcpi_insn" at picorv32.v(111) has no driver File: C:/DE0-RISC-V-MCU/hw/week6/picorv32.v Line: 111
 Warning (276020): Inferred RAM node "picorv32:u_cpu|cpuregs_rtl_0" from synchronous design logic.  Pass-through logic has been added to match the read-during-write behavior of the original design.
 Warning (276020): Inferred RAM node "picorv32:u_cpu|cpuregs_rtl_1" from synchronous design logic.  Pass-through logic has been added to match the read-during-write behavior of the original design.
 Info (19000): Inferred 2 megafunctions from design logic
@@ -1601,13 +1601,13 @@ Info (12133): Instantiated megafunction "picorv32:u_cpu|altsyncram:cpuregs_rtl_0
     Info (12134): Parameter "INDATA_ACLR_A" = "NONE"
     Info (12134): Parameter "WRCONTROL_ACLR_A" = "NONE"
 Info (12021): Found 1 design units, including 1 entities, in source file db/altsyncram_trd1.tdf
-    Info (12023): Found entity 1: altsyncram_trd1 File: C:/Users/Peace/Documents/Docs/DE0-RISC-V-MCU-main/hw/week6/db/altsyncram_trd1.tdf Line: 28
+    Info (12023): Found entity 1: altsyncram_trd1 File: C:/DE0-RISC-V-MCU/hw/week6/db/altsyncram_trd1.tdf Line: 28
 Warning (12241): 1 hierarchies have connectivity warnings - see the Connectivity Checks report folder
-Info (13000): Registers with preset signals will power-up high File: C:/Users/Peace/Documents/Docs/DE0-RISC-V-MCU-main/hw/week3/uart.vhd Line: 77
+Info (13000): Registers with preset signals will power-up high File: C:/DE0-RISC-V-MCU/hw/week3/uart.vhd Line: 78
 Info (13003): DEV_CLRn pin will set, and not reset, register with preset signal due to NOT Gate Push-Back
 Info (286030): Timing-Driven Synthesis is running
 Info (17049): 7 registers lost all their fanouts during netlist optimizations.
-Info (144001): Generated suppressed messages file C:/Users/Peace/Documents/Docs/DE0-RISC-V-MCU-main/hw/week6/output_files/week6.map.smsg
+Info (144001): Generated suppressed messages file C:/DE0-RISC-V-MCU/hw/week6/output_files/week6.map.smsg
 Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
     Info (16011): Adding 0 node(s), including 0 DDIO, 0 PLL, 0 transceiver and 0 LCELL
 Info (21057): Implemented 1935 device resources after synthesis - the final resource count might be different
@@ -1616,15 +1616,15 @@ Info (21057): Implemented 1935 device resources after synthesis - the final reso
     Info (21061): Implemented 1823 logic cells
     Info (21064): Implemented 96 RAM segments
 Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 75 warnings
-    Info: Peak virtual memory: 4826 megabytes
-    Info: Processing ended: Thu Sep 10 22:13:11 2026
-    Info: Elapsed time: 00:00:31
-    Info: Total CPU time (on all processors): 00:00:47
+    Info: Peak virtual memory: 4841 megabytes
+    Info: Processing ended: Fri Sep 11 01:30:40 2026
+    Info: Elapsed time: 00:00:40
+    Info: Total CPU time (on all processors): 00:00:43
 
 
 +------------------------------------------+
 ; Analysis & Synthesis Suppressed Messages ;
 +------------------------------------------+
-The suppressed messages can be found in C:/Users/Peace/Documents/Docs/DE0-RISC-V-MCU-main/hw/week6/output_files/week6.map.smsg.
+The suppressed messages can be found in C:/DE0-RISC-V-MCU/hw/week6/output_files/week6.map.smsg.
 
 
