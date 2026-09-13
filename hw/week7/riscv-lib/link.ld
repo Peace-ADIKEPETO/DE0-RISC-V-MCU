@@ -1,5 +1,3 @@
-/* link.ld - Memory layout for DE0-RISCV MCU */
-
 ENTRY(_start)
 
 MEMORY
@@ -9,20 +7,21 @@ MEMORY
 
 SECTIONS
 {
-    .text : {
+    .text.start 0x00000000 : {
         *(.text.start)
+    } > RAM
+
+    .text.irq 0x00000010 : {
+        *(.text.irq)
+    } > RAM
+
+    .text : {
         *(.text*)
     } > RAM
 
-    .rodata : {
-        *(.rodata*)
-    } > RAM
-
-    .data : {
-        *(.data*)
-    } > RAM
-
-    .bss : {
+    .rodata : { *(.rodata*) } > RAM
+    .data   : { *(.data*)   } > RAM
+    .bss    : {
         _bss_start = .;
         *(.bss*)
         *(COMMON)
@@ -32,8 +31,5 @@ SECTIONS
     . = ALIGN(4);
     _stack_top = ORIGIN(RAM) + LENGTH(RAM) - 4;
 
-    /DISCARD/ : {
-        *(.comment)
-        *(.note*)
-    }
+    /DISCARD/ : { *(.comment) *(.note*) }
 }

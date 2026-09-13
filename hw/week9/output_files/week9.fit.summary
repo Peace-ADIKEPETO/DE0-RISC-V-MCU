@@ -1,0 +1,16 @@
+Fitter Status : Successful - Sun Sep 13 19:17:51 2026
+Quartus Prime Version : 22.1std.1 Build 917 02/14/2023 SC Lite Edition
+Revision Name : week9
+Top-level Entity Name : soc_boot_top
+Family : Cyclone IV E
+Device : EP4CE22F17C6
+Timing Models : Final
+Total logic elements : 2,264 / 22,320 ( 10 % )
+    Total combinational functions : 2,228 / 22,320 ( 10 % )
+    Dedicated logic registers : 948 / 22,320 ( 4 % )
+Total registers : 948
+Total pins : 16 / 154 ( 10 % )
+Total virtual pins : 0
+Total memory bits : 133,376 / 608,256 ( 22 % )
+Embedded Multiplier 9-bit elements : 0 / 132 ( 0 % )
+Total PLLs : 0 / 4 ( 0 % )

@@ -91,3 +91,4 @@ flowchart LR
 - [Week 6](hw/week6/README.md) — PicoRV32 + UART bootloader
 - [Week 7](hw/week7/README.md) — C toolchain + `blink.c`
 - [Week 8](hw/week8/README.md) — UART C library
+- [Week 9](hw/week9/README.md) — Timer + Interrupts
